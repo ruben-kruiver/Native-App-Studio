@@ -1,0 +1,17 @@
+Menu:
+ - Nieuw
+ - Stoppen
+
+Bij Nieuw:
+ - Keuze uit moeilijkheidsgraad (reeks uit aantal letters in het woord, (bijv 3-5, 6-8, 8-11, 12 <)
+ - Automatische selectie uit woordenlijst csv (http://www.opentaal.org/bestanden/doc_download/18-woordenlijst-v-210g-bronbestanden-)
+ - Tekst opgeven "Well hello! I am thinking of a %d-letter word:"
+ - Underscores plaatsen voor elk teken
+ - Invoer mogelijkheid voor een enkele letter.
+ - Voor het kiezen van de eerste letter de tekst "Guess a letter, and I’ll tell you where, if anywhere, it appears in the word. You can guess incorrectly up to, oh, six times. If you can figure out the word, you win; if you can’t (and you’re out of guesses), I win. Ready? Okay, guess a letter."
+ - Na het kiezen van een eerste letter	=> correct: Tekst "%s, you say? You are so smart. That letter appears %s:". Waarbij de tweede %s het aantal maal is dat de letter voorkomt
+ - Letters invullen op de correcte plaats, overige letters tonen met een underscore
+ - Altijd de mogelijkheid geven om het woord te raden
+ - Plaatje tekenen waarbij hang-man steeds completer wordt
+ - Aantal resterende pogingen berekenen (aantal pogingen is gelijk aan het aantal letters)
+ - Bij elke volgende poging 
