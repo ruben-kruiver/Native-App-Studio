@@ -10,19 +10,19 @@ This game has the following features:
 ### Game play
 When starting the application the player enters the Main Menu. In this menu the player (or players) can select between the options of a Single Player game, a Multi Player game, change the Settings or Quit the application.
 
-![Image](https://github.com/ruben-kruiver/Native-App-Studio/HangMan_02/doc/MainMenu.png)
+![Main Menu](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan_02/doc/MainMenu.png) 
 
 If the player starts a Single Player game, the player will directly be send to the game where a word is automatically selected from the built-in dictionary. 
 
-![Image](https://github.com/ruben-kruiver/Native-App-Studio/HangMan_02/doc/SinglePlayer.png)
+![Single Player](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan_02/doc/SinglePlayer.png)
 
 If the player selects the Multi Player game, the player will be directed to a screen where he can enter the players for the game. They may also enter the words for one of their opponents. 
 
-![Image](https://github.com/ruben-kruiver/Native-App-Studio/HangMan_02/doc/MultiPlayer.png)
+![Multi Player](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan_02/doc/MultiPlayer.png)
 
 In the Settings the player may select a different difficulty level, as well as an other Figure to place on the gallow or even a custom dictionary.
 
-![Image](https://github.com/ruben-kruiver/Native-App-Studio/HangMan_02/doc/Settings.png)
+![Settings](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan_02/doc/Settings.png)
 
 The game can be played by entering a letter that might be in the selected word. If the player chooses correctly the chosen letter will be displayed on the correct position(s) in the word that is revealed and the player can continue playing. If the player chooses incorrectly the Hangman figure will be appended until the figure is complete and one guess is decremented. The player will get a total of 7 failed guesses until the game is over.
 
