@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">HangMan</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_new_game">Play game</string>
+    <string name="activity_return_main_menu">Back to Main Menu</string>
+    <string name="menu_single_player">Single Player</string>
+    <string name="menu_multiplayer_player">Multi Player</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_quit">Quit</string>
+    <string name="title_activity_add_player">Add players</string>
+
+    <string name="title_activity_main_menu">HangMan</string>
+    <string name="title_activity_multi_player_game">MultiPlayer Game</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="settings_difficulty">Difficulty</string>
+</resources>

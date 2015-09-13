@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="nl.mprog.apps.hangman11079592.NewGameActivity">
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item
+        android:id="@+id/new_game"
+        android:title="@string/menu_single_player"
+        android:showAsAction="collapseActionView" />
+</menu>

@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>AT&amp;T UI Elements Documentation - Drop Down Lists</title>
+	<link type="text/css" rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+
+<div class="wiki-content">
+           <!-- wiki content -->
+            <h3><a name="AndroidDropDownList-Introduction"></a>Introduction</h3>
+
+<p>A Dropdown List UI element enables users to choose between multiple items in a list. These UI elements have three states: default, pressed, and disabled. The current item is checked and the user is allowed to scroll through the list.</p>
+
+<div class="table-wrap">
+<table class="confluenceTable"><tbody>
+<tr>
+<th class="confluenceTh"><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/dropDownNew03.png"></span></th>
+<th class="confluenceTh"><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/dropDownNew01.png"></span></th>
+<th class="confluenceTh"><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/dropDownNew02.png"></span></th>
+</tr>
+</tbody></table>
+</div>
+
+
+<h3><a name="AndroidDropDownList-Creation"></a>Creation</h3>
+
+<p>You need to create a new com.att.widgets.lib.dropdown.DropDown object and add it to your view or layout.</p>
+
+<h6><a name="AndroidDropDownList-Fulllayoutcode"></a>Full layout code</h6>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"utf-8"</span>?&gt;
+&lt;LinearLayout xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>    android:orientation=<span class="code-quote">"vertical"</span>
+    android:layout_width=<span class="code-quote">"fill_parent"</span>
+    android:layout_height=<span class="code-quote">"fill_parent"</span>
+    &gt;
+&lt;TextView android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span>
+		android:text=<span class="code-quote">"This is a sample of 3 Dropdowns"</span>
+		android:paddingBottom=<span class="code-quote">"10dp"</span>
+		android:textStyle=<span class="code-quote">"bold"</span>/&gt;
+	&lt;LinearLayout android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span>
+		android:orientation=<span class="code-quote">"horizontal"</span>
+		android:paddingBottom=<span class="code-quote">"10dp"</span>&gt;
+		&lt;TextView android:layout_width=<span class="code-quote">"100dip"</span> 
+			android:layout_height=<span class="code-quote">"fill_parent"</span>
+			android:gravity=<span class="code-quote">"center_vertical"</span>
+			android:text=<span class="code-quote">"Andriod Os:"</span>/&gt;
+		&lt;com.att.widgets.lib.dropdown.DropDown 
+			android:id=<span class="code-quote">"@+id/dropdown"</span>  
+			android:layout_width=<span class="code-quote">"fill_parent"</span> 
+			android:layout_height=<span class="code-quote">"wrap_content"</span>/&gt;
+	&lt;/LinearLayout&gt;
+	
+	&lt;LinearLayout android:id=<span class="code-quote">"@+id/dropdown_2_view"</span> 
+		android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span>
+		android:orientation=<span class="code-quote">"horizontal"</span>
+		android:paddingBottom=<span class="code-quote">"10dp"</span>&gt;
+		&lt;TextView android:layout_width=<span class="code-quote">"100dip"</span> 
+			android:layout_height=<span class="code-quote">"fill_parent"</span>
+			android:gravity=<span class="code-quote">"center_vertical"</span>
+			android:text=<span class="code-quote">"Phones:"</span>/&gt;
+
+	&lt;/LinearLayout&gt;
+	
+	&lt;TextView android:id=<span class="code-quote">"@+id/dropdown_text_1"</span> 
+		android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span>/&gt;
+	&lt;TextView android:id=<span class="code-quote">"@+id/dropdown_text_2"</span> 
+		android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span>/&gt;
+		
+	&lt;LinearLayout android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span>
+		android:orientation=<span class="code-quote">"horizontal"</span>
+		android:layout_marginTop=<span class="code-quote">"10dip"</span>&gt;
+		&lt;TextView android:layout_width=<span class="code-quote">"100dip"</span> 
+			android:layout_height=<span class="code-quote">"fill_parent"</span>
+			android:gravity=<span class="code-quote">"center_vertical"</span>
+			android:text=<span class="code-quote">"Disabled Dropdown:"</span>/&gt;
+		&lt;com.att.widgets.lib.dropdown.DropDown 
+			android:id=<span class="code-quote">"@+id/dropdown_disabled"</span>  
+			android:layout_width=<span class="code-quote">"fill_parent"</span> 
+			android:layout_height=<span class="code-quote">"wrap_content"</span>/&gt;
+	&lt;/LinearLayout&gt;
+&lt;/LinearLayout&gt;
+</pre>
+</div></div>
+
+<h3><a name="AndroidDropDownList-Activity"></a>Activity </h3>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">
+<span class="code-keyword">import</span> android.app.Activity;
+<span class="code-keyword">import</span> android.os.Bundle;
+<span class="code-keyword">import</span> android.view.View;
+<span class="code-keyword">import</span> android.view.ViewGroup;
+<span class="code-keyword">import</span> android.view.View.OnClickListener;
+<span class="code-keyword">import</span> android.view.ViewGroup.LayoutParams;
+<span class="code-keyword">import</span> android.widget.RelativeLayout;
+<span class="code-keyword">import</span> android.widget.TextView;
+
+<span class="code-keyword">import</span> com.att.widgets.lib.dropdown.DropDown;
+
+<span class="code-keyword">public</span> class DropDownActivity <span class="code-keyword">extends</span> Activity <span class="code-keyword">implements</span> OnClickListener {
+	<span class="code-keyword">private</span> <span class="code-object">String</span>[]array_1 = {<span class="code-quote">"Gingerbread"</span>, <span class="code-quote">"Froyo"</span>, <span class="code-quote">"Cupcake"</span>, <span class="code-quote">"Donut"</span>, <span class="code-quote">"Eclair"</span>};
+	<span class="code-keyword">private</span> <span class="code-object">String</span>[]array_2 = {<span class="code-quote">"Milestone"</span>, <span class="code-quote">"Galaxy"</span>, <span class="code-quote">"Nexus One"</span>, <span class="code-quote">"MotoBlur"</span>};
+	
+	<span class="code-keyword">private</span> DropDown dropDown_1, dropDown_2;
+	<span class="code-keyword">private</span> TextView textView_1, textView_2;
+	
+	@Override
+	<span class="code-keyword">protected</span> void onCreate(Bundle savedInstanceState) {
+		<span class="code-keyword">super</span>.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+		
+		ViewGroup v = (ViewGroup)findViewById(R.id.dropdown_2_view);
+		textView_1 = (TextView)findViewById(R.id.dropdown_text_1);
+		textView_2 = (TextView)findViewById(R.id.dropdown_text_2);
+		
+		dropDown_1 = ((DropDown)findViewById(R.id.dropdown));
+		dropDown_1.setFocusable(<span class="code-keyword">true</span>);
+		
+		dropDown_2 = <span class="code-keyword">new</span> DropDown(<span class="code-keyword">this</span>);
+		RelativeLayout.LayoutParams ll = <span class="code-keyword">new</span> RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+		dropDown_2.setLayoutParams(ll);
+		v.addView(dropDown_2);
+
+		dropDown_1.setData(array_1);
+		dropDown_2.setData(array_2);
+		dropDown_1.setFieldsNumber(4);
+		dropDown_2.setFieldsNumber(3);
+		((DropDown)findViewById(R.id.dropdown_disabled)).setEnabled(<span class="code-keyword">false</span>);
+		((DropDown)findViewById(R.id.dropdown_disabled)).setDisplayText(<span class="code-quote">"Disabled Dropdown"</span>);
+		
+		<span class="code-comment">//listeners
+</span>		dropDown_1.setOnClickListener(<span class="code-keyword">this</span>);
+		dropDown_2.setOnClickListener(<span class="code-keyword">this</span>);
+	}
+
+	<span class="code-keyword">public</span> void onClick(View v) {
+		<span class="code-keyword">if</span>(v == dropDown_1){
+			textView_1.setText(<span class="code-quote">"Selected Android Os: "</span> + dropDown_1.getSelectedText());
+		}<span class="code-keyword">else</span> <span class="code-keyword">if</span>(v == dropDown_2){
+			textView_2.setText(<span class="code-quote">"Selected Phone: "</span> +dropDown_2.getSelectedText());
+		}
+	}
+}
+</pre>
+</div></div>
+
+<h3><a name="AndroidDropDownList-Explanation"></a>Explanation</h3>
+<p>The first Dropdown is defined in Xml with the id "dropdown", and focused by code</p>
+
+<h4><a name="AndroidDropDownList-FirstDropDownLayout"></a>First Drop Down Layout</h4>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">		&lt;com.att.widgets.lib.dropdown.DropDown
+			android:id=<span class="code-quote">"@+id/dropdown"</span> android:layout_width=<span class="code-quote">"fill_parent"</span>
+			android:layout_height=<span class="code-quote">"wrap_content"</span> /&gt;
+</pre>
+</div></div>
+
+<h4><a name="AndroidDropDownList-FirstDropDownActivityCode"></a>First Drop Down Activity Code</h4>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">	dropDown_1 = ((DropDown)findViewById(R.id.dropdown));
+	dropDown_1.setFocusable(<span class="code-keyword">true</span>);
+        dropDown_1.setData(array_1);
+	dropDown_1.setOnClickListener(<span class="code-keyword">this</span>);
+        <span class="code-comment">// <span class="code-object">Number</span> of fields visible on the drop down list
+</span>        dropDown_1.setFieldsNumber(4);
+</pre>
+</div></div>
+
+
+<h4><a name="AndroidDropDownList-SecondDropDownLayout"></a>Second Drop Down Layout </h4>
+
+<p>And the second DropDown is generated from the following code. Only LinearLayout is defined in the xml</p>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">        &lt;LinearLayout android:id=<span class="code-quote">"@+id/dropdown_2_view"</span> 
+		android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span>
+		android:orientation=<span class="code-quote">"horizontal"</span>&gt;
+
+	&lt;/LinearLayout&gt;
+</pre>
+</div></div>
+
+<h4><a name="AndroidDropDownList-SecondDropDownActivityCode"></a>Second Drop Down Activity Code</h4>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">                ViewGroup v = (ViewGroup)findViewById(R.id.dropdown_2_view);
+                dropDown_2 = <span class="code-keyword">new</span> DropDown(<span class="code-keyword">this</span>);
+		RelativeLayout.LayoutParams ll = <span class="code-keyword">new</span> RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+		dropDown_2.setLayoutParams(ll);
+		v.addView(dropDown_2);
+                dropDown_2.setFocusable(<span class="code-keyword">true</span>);
+                dropDown_2.setData(array_2);
+	        dropDown_2.setOnClickListener(<span class="code-keyword">this</span>);
+                <span class="code-comment">//number of fields visible on the drop down list
+</span>                dropDown_2.setFieldsNumber(3);
+</pre>
+</div></div>
+
+<p>You can choose how you want to do it.</p>
+
+<h4><a name="AndroidDropDownList-Clicklisteners"></a>Click listeners</h4>
+
+<p>You should add a click listener to handle the selection event</p>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">     dropDown.setOnClickListener(<span class="code-keyword">this</span>);
+</pre>
+</div></div>
+
+<p>and implement the OnClickListener in the current class. For example:</p>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java"><span class="code-keyword">public</span> class DropDownActivity <span class="code-keyword">extends</span> Activity <span class="code-keyword">implements</span> OnClickListener
+...
+    <span class="code-keyword">public</span> void onClick(View v) {
+         ...
+    }
+</pre>
+</div></div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>AT&amp;T UI Elements Documentation - Static Text Toggle Buttons</title>
+	<link type="text/css" rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+
+<div class="wiki-content">
+           <!-- wiki content -->
+            <h3><a name="AndroidStaticTextToggleButton-Introduction"></a>Introduction</h3>
+<p>The Static Text Toggle Button UI component is like a Static Text Button UI element except that after it is pressed it remains active until it is pressed again. It has four states: enabled, pressed, active, and disabled.</p>
+
+<p><span style="" class="image-wrap"><img style="border: 0px solid black;" src="images/static-text-toggle-button.png"></span></p>
+
+<h3><a name="AndroidStaticTextToggleButton-CreationfromXML"></a>Creation from XML</h3>
+
+<p>You need to create a new com.att.widgets.lib.button.StaticTextToggleButton object and add it to your view or layout.</p>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">	&lt;com.att.widgets.lib.button.StaticTextToggleButton  
+	    android:layout_width=<span class="code-quote">"fill_parent"</span> 
+	    android:layout_height=<span class="code-quote">"wrap_content"</span> 
+	    android:text=<span class="code-quote">"Static Text Toggle Button"</span>
+        /&gt;
+</pre>
+</div></div>
+
+
+<h3><a name="AndroidStaticTextToggleButton-CreationfromCode"></a>Creation from Code</h3>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java"><span class="code-keyword">package</span> com.att.test;
+
+<span class="code-keyword">import</span> android.app.Activity;
+<span class="code-keyword">import</span> android.os.Bundle;
+<span class="code-keyword">import</span> android.view.ViewGroup;
+
+<span class="code-keyword">import</span> com.att.widgets.lib.button.StaticTextToggleButton;
+
+<span class="code-keyword">public</span> class StaticTextToggleButtonActivity <span class="code-keyword">extends</span> Activity {
+    /** Called when the activity is first created. */
+    @Override
+    <span class="code-keyword">public</span> void onCreate(Bundle savedInstanceState) {
+        <span class="code-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        
+        StaticTextToggleButton toggleButtonDisabled = (StaticTextToggleButton) findViewById(R.id.toggle_disabled);
+        toggleButtonDisabled.setEnabled(<span class="code-keyword">false</span>);
+        
+        StaticTextToggleButton toggleButton = <span class="code-keyword">new</span> StaticTextToggleButton(<span class="code-keyword">this</span>);
+        toggleButton.setText(<span class="code-quote">"Toggle Button added by code"</span>);
+        
+        ViewGroup view = (ViewGroup) findViewById(R.id.toggle_button_main);
+        view.addView(toggleButton);
+    }
+}
+</pre>
+</div></div>
+
+<h3><a name="AndroidStaticTextToggleButton-FullLayoutCode"></a>Full Layout Code</h3>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"utf-8"</span>?&gt;
+&lt;LinearLayout xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>    android:orientation=<span class="code-quote">"vertical"</span>
+    android:layout_width=<span class="code-quote">"fill_parent"</span>
+    android:layout_height=<span class="code-quote">"fill_parent"</span>
+    android:padding=<span class="code-quote">"10sp"</span>
+    android:id=<span class="code-quote">"@+id/toggle_button_main"</span>
+    &gt;
+	&lt;TextView android:layout_width=<span class="code-quote">"fill_parent"</span>
+		android:layout_height=<span class="code-quote">"wrap_content"</span>
+		android:text=<span class="code-quote">"This is a Static Text Toggle Button"</span>
+		 /&gt;
+		
+	&lt;com.att.widgets.lib.button.StaticTextToggleButton  
+	    android:layout_width=<span class="code-quote">"fill_parent"</span> 
+	    android:layout_height=<span class="code-quote">"wrap_content"</span> 
+	    android:text=<span class="code-quote">"Static Text Toggle Button"</span>
+	    android:id=<span class="code-quote">"@+id/toggle_enabled"</span>
+	    android:layout_marginTop=<span class="code-quote">"5dip"</span>
+        /&gt;
+    
+	&lt;TextView android:layout_width=<span class="code-quote">"fill_parent"</span>
+		android:layout_height=<span class="code-quote">"wrap_content"</span>
+		android:text=<span class="code-quote">"This is a disabled Static Text Toggle Button"</span>
+	    android:layout_marginTop=<span class="code-quote">"10dip"</span>
+		/&gt;
+		
+	&lt;com.att.widgets.lib.button.StaticTextToggleButton  
+	    android:layout_width=<span class="code-quote">"fill_parent"</span> 
+	    android:layout_height=<span class="code-quote">"wrap_content"</span> 
+	    android:text=<span class="code-quote">"Disabled Static Text Toggle Button"</span>
+	    android:id=<span class="code-quote">"@+id/toggle_disabled"</span>
+	    android:layout_marginTop=<span class="code-quote">"5dip"</span>
+    /&gt;
+    
+   &lt;TextView android:layout_width=<span class="code-quote">"fill_parent"</span>
+   		android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		android:text=<span class="code-quote">"This is a Static Text Toggle Button created in code"</span>
+	    android:layout_marginTop=<span class="code-quote">"10dip"</span>
+		/&gt;    
+&lt;/LinearLayout&gt;
+</pre>
+</div></div>
+
+<h3><a name="AndroidStaticTextToggleButton-DisabledState"></a>Disabled State</h3>
+
+<p>To disable the text toggle button, set the enabled property to false.</p>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">        toggleButtonDisabled.setEnabled(<span class="code-keyword">false</span>);
+</pre>
+</div></div>
+        </div>
+</body>
+</html>

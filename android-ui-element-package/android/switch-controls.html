@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>AT&amp;T UI Elements Documentation - Switch Controls</title>
+	<link type="text/css" rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+
+<div class="wiki-content">
+           <!-- wiki content -->
+            <h3><a name="AndroidSwitchControl-Introduction"></a>Introduction</h3>
+<p>Switch control is a basic two-position UI element such as On/Off , 0/1 and odd/even.</p>
+
+
+<div class="table-wrap">
+<table class="confluenceTable"><tbody>
+<tr>
+<th class="confluenceTh"><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/switchControl01.png"></span></th>
+<th class="confluenceTh"><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/switchControl02.png"></span></th>
+</tr>
+</tbody></table>
+</div>
+
+
+
+
+
+<h3><a name="AndroidSwitchControl-Creation"></a>Creation</h3>
+
+<p>You need to create a new com.att.widgets.lib.control.SwitchControl object and add it to your view or layout.</p>
+
+<h6><a name="AndroidSwitchControl-FullLayoutcode"></a>Full Layout code</h6>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"utf-8"</span>?&gt;
+&lt;LinearLayout xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>	xmlns:att=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/com.att.control"</span>
+</span>	android:layout_width=<span class="code-quote">"fill_parent"</span> 
+	android:layout_height=<span class="code-quote">"fill_parent"</span>  
+	android:orientation=<span class="code-quote">"vertical"</span>
+	android:background=<span class="code-quote">"@color/white"</span> android:paddingLeft=<span class="code-quote">"15dp"</span>
+	android:paddingRight=<span class="code-quote">"15dp"</span>&gt;
+
+	&lt;TextView android:id=<span class="code-quote">"@+id/textFieldAndroid"</span> 
+		android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		android:text=<span class="code-quote">"@string/switch_control_description"</span>  
+		android:paddingTop=<span class="code-quote">"10dp"</span>
+		android:paddingBottom=<span class="code-quote">"10dp"</span>
+		/&gt;
+
+	&lt;com.att.widgets.lib.control.SwitchControl
+		android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span>  
+		android:id=<span class="code-quote">"@+id/switchCon"</span>
+	/&gt;
+
+	&lt;com.att.widgets.lib.control.SwitchControl
+		android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span>  
+		android:id=<span class="code-quote">"@+id/switchCon"</span>
+		att:switch_left_label=<span class="code-quote">"Off"</span>
+		att:switch_right_label=<span class="code-quote">"On"</span>
+	/&gt;
+	
+	&lt;com.att.widgets.lib.control.SwitchControl
+		android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span>  
+		android:id=<span class="code-quote">"@+id/switchConDis1"</span>
+		att:switch_enabled=<span class="code-quote">"<span class="code-keyword">false</span>"</span> 
+		att:switch_left_label=<span class="code-quote">"no"</span>
+		att:switch_right_label=<span class="code-quote">"yes"</span>
+		/&gt;
+	
+	&lt;com.att.widgets.lib.control.SwitchControl
+		android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		android:layout_height=<span class="code-quote">"wrap_content"</span>  
+		android:id=<span class="code-quote">"@+id/switchDis2"</span>
+		att:switch_enabled=<span class="code-quote">"<span class="code-keyword">false</span>"</span>
+		att:switch_checked=<span class="code-quote">"<span class="code-keyword">true</span>"</span>
+		att:switch_left_label=<span class="code-quote">"0"</span>
+		att:switch_right_label=<span class="code-quote">"1"</span>
+		/&gt;
+	
+&lt;/LinearLayout&gt;
+
+</pre>
+</div></div>
+
+
+<h6><a name="AndroidSwitchControl-SimpleSwitchControl"></a>Simple Switch Control</h6>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;com.att.widgets.lib.control.SwitchControl
+    android:layout_width=<span class="code-quote">"wrap_content"</span> 
+    android:layout_height=<span class="code-quote">"wrap_content"</span>  
+    android:id=<span class="code-quote">"@+id/switchCon"</span>
+/&gt;
+</pre>
+</div></div>
+
+<h6><a name="AndroidSwitchControl-LeftRightlabeledSwitchControl"></a>Left-Right labeled Switch Control</h6>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;com.att.widgets.lib.control.SwitchControl
+    android:layout_width=<span class="code-quote">"wrap_content"</span> 
+    android:layout_height=<span class="code-quote">"wrap_content"</span>  
+    android:id=<span class="code-quote">"@+id/switchCon"</span>
+    att:switch_left_label=<span class="code-quote">"Off"</span>
+    att:switch_right_label=<span class="code-quote">"On"</span>
+/&gt;
+</pre>
+</div></div>
+<h6><a name="AndroidSwitchControl-LeftRightlabeledSwitchControluncheckeddisabled"></a>Left-Right labeled Switch Control unchecked disabled</h6>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;com.att.widgets.lib.control.SwitchControl
+    android:layout_width=<span class="code-quote">"wrap_content"</span> 
+    android:layout_height=<span class="code-quote">"wrap_content"</span>  
+    android:id=<span class="code-quote">"@+id/switchConDis1"</span>
+    att:switch_enabled=<span class="code-quote">"<span class="code-keyword">false</span>"</span> 
+    att:switch_left_label=<span class="code-quote">"no"</span>
+    att:switch_right_label=<span class="code-quote">"yes"</span>
+/&gt;
+	
+</pre>
+</div></div>
+<h6><a name="AndroidSwitchControl-LeftRightlabeledSwitchControlcheckeddisabled"></a>Left-Right labeled Switch Control checked disabled</h6>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">	
+&lt;com.att.widgets.lib.control.SwitchControl
+    android:layout_width=<span class="code-quote">"wrap_content"</span> 
+    android:layout_height=<span class="code-quote">"wrap_content"</span>  
+    android:id=<span class="code-quote">"@+id/switchDis2"</span>
+    att:switch_enabled=<span class="code-quote">"<span class="code-keyword">false</span>"</span>
+    att:switch_checked=<span class="code-quote">"<span class="code-keyword">true</span>"</span>
+    att:switch_left_label=<span class="code-quote">"0"</span>
+    att:switch_right_label=<span class="code-quote">"1"</span>
+/&gt;
+</pre>
+</div></div>
+
+<h3><a name="AndroidSwitchControl-Configuration"></a>Configuration</h3>
+
+<div class="table-wrap">
+<table class="confluenceTable"><tbody>
+<tr>
+<th class="confluenceTh">Attribute </th>
+<th class="confluenceTh"> Type </th>
+<th class="confluenceTh"> Description</th>
+</tr>
+<tr>
+<td class="confluenceTd">att:switch_enabled </td>
+<td class="confluenceTd"> boolean </td>
+<td class="confluenceTd"> "false" desables control , default is true </td>
+</tr>
+<tr>
+<td class="confluenceTd">att:switch_checked </td>
+<td class="confluenceTd"> boolean </td>
+<td class="confluenceTd"> "true" sets switchs into "on" (right) position, default is false </td>
+</tr>
+<tr>
+<td class="confluenceTd">att:switch_left_label </td>
+<td class="confluenceTd"> String </td>
+<td class="confluenceTd"> Left label value , default "" </td>
+</tr>
+<tr>
+<td class="confluenceTd">att:switch_right_label </td>
+<td class="confluenceTd"> String </td>
+<td class="confluenceTd"> Right label value , default "" </td>
+</tr>
+</tbody></table>
+</div>
+
+
+<p>In order to be able to use custom attributes, you must declare the namespace xmlns:att</p>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;LinearLayout xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>	xmlns:att=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/com.att.control"</span>
+</span>	android:layout_width=<span class="code-quote">"fill_parent"</span> 
+	android:layout_height=<span class="code-quote">"fill_parent"</span>  
+	android:orientation=<span class="code-quote">"vertical"</span>
+	android:background=<span class="code-quote">"@color/white"</span>&gt;
+&lt;!-- Your code using att attributes --&gt;
+&lt;/LinearLayout
+</pre>
+</div></div>
+        </div>
+</body>
+</html>

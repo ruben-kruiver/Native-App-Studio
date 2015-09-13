@@ -1,0 +1,343 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nl.mprog.apps.hangman11079592.NewGameActivity"
+    android:screenOrientation="portrait">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/background"
+        android:scaleType = "centerCrop"
+        android:layout_gravity="center_horizontal|top" />
+
+    <SurfaceView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/figureView"
+        android:minHeight="300dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/feedbackMessage"
+        android:layout_below="@+id/figureView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/displayWord"
+        android:textSize="40dp"
+        android:layout_below="@+id/feedbackMessage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="400dp"
+        android:gravity="center">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|bottom">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="q"
+                    android:id="@+id/key_q"
+                    android:onClick="enterChar" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="w"
+                    android:id="@+id/key_w"
+                    android:layout_toRightOf="@id/key_q" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="e"
+                    android:id="@+id/key_e"
+                    android:layout_toRightOf="@id/key_w" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="r"
+                    android:id="@+id/key_r"
+                    android:layout_toRightOf="@id/key_e" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="t"
+                    android:id="@+id/key_t"
+                    android:layout_toRightOf="@id/key_r" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="y"
+                    android:id="@+id/key_y"
+                    android:layout_toRightOf="@id/key_t" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="u"
+                    android:id="@+id/key_u"
+                    android:layout_toRightOf="@id/key_y" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="i"
+                    android:id="@+id/key_i"
+                    android:layout_toRightOf="@id/key_u" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="o"
+                    android:id="@+id/key_o"
+                    android:layout_toRightOf="@id/key_i" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="p"
+                    android:id="@+id/key_p"
+                    android:layout_toRightOf="@id/key_o" />
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal|bottom">
+            <RelativeLayout
+                android:layout_gravity="center">
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="a"
+                    android:id="@+id/key_a" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="s"
+                    android:id="@+id/key_s"
+                    android:layout_toRightOf="@id/key_a" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="d"
+                    android:id="@+id/key_d"
+                    android:layout_toRightOf="@id/key_s" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="f"
+                    android:id="@+id/key_f"
+                    android:layout_toRightOf="@id/key_d" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="g"
+                    android:id="@+id/key_g"
+                    android:layout_toRightOf="@id/key_f" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="h"
+                    android:id="@+id/key_h"
+                    android:layout_toRightOf="@id/key_g" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="j"
+                    android:id="@+id/key_j"
+                    android:layout_toRightOf="@id/key_h" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="k"
+                    android:id="@+id/key_k"
+                    android:layout_toRightOf="@id/key_j" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="l"
+                    android:id="@+id/key_l"
+                    android:layout_toRightOf="@id/key_k"/>
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal|bottom">
+            <RelativeLayout
+                android:layout_gravity="center"
+                android:layout_margin="0dp">
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="z"
+                    android:id="@+id/key_z" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="x"
+                    android:id="@+id/key_x"
+                    android:layout_toRightOf="@id/key_z" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="c"
+                    android:id="@+id/key_c"
+                    android:layout_toRightOf="@id/key_x" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="v"
+                    android:id="@+id/key_v"
+                    android:layout_toRightOf="@id/key_c" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="@dimen/activity_keypad_button"
+                    android:layout_height="@dimen/activity_keypad_button"
+                    android:minHeight="@dimen/activity_keypad_button"
+                    android:minWidth="@dimen/activity_keypad_button"
+                    android:text="b"
+                    android:id="@+id/key_b"
+                    android:layout_toRightOf="@id/key_v" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:minHeight="35dp"
+                    android:minWidth="35dp"
+                    android:text="n"
+                    android:id="@+id/key_n"
+                    android:layout_toRightOf="@id/key_b" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:minHeight="35dp"
+                    android:minWidth="35dp"
+                    android:text="m"
+                    android:id="@+id/key_m"
+                    android:layout_toRightOf="@id/key_n" />
+            </RelativeLayout>
+        </TableRow>
+
+    </TableLayout>
+</RelativeLayout>

@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>AT&amp;T UI Elements Documentation - Image Buttons</title>
+	<link type="text/css" rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+
+<div class="wiki-content">
+           <!-- wiki content -->
+            <h3><a name="AndroidImageButtons-Introduction"></a>Introduction</h3>
+
+<p>The image button UI element is button UI element which has images representing its states. There are predefined image buttons or you can create your own button providing the images. For instance:</p>
+
+
+<p><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/ImageButtonOnFocus.png"></span></p>
+
+<h3><a name="AndroidImageButtons-Creation"></a>Creation</h3>
+
+<p>You need to create a new com.att.widgets.lib.button.ImageButton object and add it to your view or layout.</p>
+
+<h3><a name="AndroidImageButtons-Example"></a>Example</h3>
+
+<p>Button with predefined image</p>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"utf-8"</span>?&gt;
+&lt;LinearLayout 
+                xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>                xmlns:att=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/com.att.statictextbutton"</span>
+</span>                android:layout_width=<span class="code-quote">"fill_parent"</span> 
+                android:layout_height=<span class="code-quote">"wrap_content"</span>&gt;
+		&lt;TextView 
+                     android:layout_height=<span class="code-quote">"wrap_content"</span> 
+                     android:text=<span class="code-quote">"Close Button:"</span> 
+                     android:layout_width=<span class="code-quote">"150dip"</span>/&gt;
+		&lt;com.att.widgets.lib.button.ImageButton 
+                     android:id=<span class="code-quote">"@+id/btn2"</span> 
+                     android:layout_width=<span class="code-quote">"wrap_content"</span> 
+                     android:layout_height=<span class="code-quote">"wrap_content"</span> 
+                     android:layout_marginBottom=<span class="code-quote">"10sp"</span> 
+                     att:imageType=<span class="code-quote">"close"</span>/&gt;
+		&lt;com.att.widgets.lib.button.ImageButton 
+                     android:id=<span class="code-quote">"@+id/btn2_disabled"</span> 
+                     android:layout_width=<span class="code-quote">"wrap_content"</span> 
+                     android:layout_height=<span class="code-quote">"wrap_content"</span> 
+                     android:layout_marginBottom=<span class="code-quote">"10sp"</span> 
+                     att:imageType=<span class="code-quote">"close"</span>/&gt;
+&lt;/LinearLayout&gt;
+</pre>
+</div></div>
+
+
+<h3><a name="AndroidImageButtons-ActivityCode"></a>Activity Code</h3>
+<p>Disabling image button is only allowed by code</p>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">
+<span class="code-keyword">public</span> void onCreate(Bundle savedInstanceState) {
+        <span class="code-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        ((ImageButton) <span class="code-keyword">this</span>.findViewById(R.id.btn2_disabled)).setEnabled(<span class="code-keyword">false</span>);
+   }
+</pre>
+</div></div>
+<h3><a name="AndroidImageButtons-Configuration"></a>Configuration</h3>
+
+<p>There are 5 predefined buttons, you can select one of them changing the 'src' property:</p>
+<div class="table-wrap">
+<table class="confluenceTable"><tbody>
+<tr>
+<th class="confluenceTh"> Src <br class="atl-forced-newline"> </th>
+<th class="confluenceTh"> Description <br class="atl-forced-newline"> </th>
+</tr>
+<tr>
+<td class="confluenceTd"> @drawable/play_big_button <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> Play Button Big <br class="atl-forced-newline"> </td>
+</tr>
+<tr>
+<td class="confluenceTd"> @drawable/pause_button <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> Pause Button <br class="atl-forced-newline"> </td>
+</tr>
+<tr>
+<td class="confluenceTd"> @drawable/levelup_button <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> Level Up Button <br class="atl-forced-newline"> </td>
+</tr>
+<tr>
+<td class="confluenceTd"> @drawable/remove_button <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> Remove Button <br class="atl-forced-newline"> </td>
+</tr>
+<tr>
+<td class="confluenceTd"> @drawable/play_button <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> Play Button Small <br class="atl-forced-newline"> </td>
+</tr>
+</tbody></table>
+</div>
+
+
+<h3><a name="AndroidImageButtons-Howtocreatepersonalizedimagebuttons"></a>How to create personalized image buttons</h3>
+
+<p>1. Create a new xml file named res/drawable/mybutton.xml with this content:</p>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"utf-8"</span>?&gt;
+&lt;selector xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>&gt;
+</span>	&lt;item android:state_enabled=<span class="code-quote">"<span class="code-keyword">false</span>"</span> 
+              android:drawable=<span class="code-quote">"@drawable/mybutton_disabled"</span> /&gt; &lt;!-- disabled --&gt;
+	&lt;item android:state_pressed=<span class="code-quote">"<span class="code-keyword">true</span>"</span> 
+              android:drawable=<span class="code-quote">"@drawable/mybutton_pressed"</span> /&gt; &lt;!-- pressed --&gt;
+	&lt;item android:state_focused=<span class="code-quote">"<span class="code-keyword">true</span>"</span> 
+              android:drawable=<span class="code-quote">"@drawable/mybutton_focused"</span> /&gt; &lt;!-- focused --&gt;
+	&lt;item android:drawable=<span class="code-quote">"@drawable/mybutton_enabled"</span> /&gt; &lt;!-- <span class="code-keyword">default</span> --&gt;
+&lt;/selector&gt;
+</pre>
+</div></div>
+
+<p>2. Add the images corresponding to each state to the res/drawable folder:</p>
+<div class="table-wrap">
+<table class="confluenceTable"><tbody>
+<tr>
+<th class="confluenceTh"> Image <br class="atl-forced-newline"> </th>
+<th class="confluenceTh"> State <br class="atl-forced-newline"> </th>
+<th class="confluenceTh"> Image Description <br class="atl-forced-newline"> </th>
+</tr>
+<tr>
+<td class="confluenceTd"> @drawable/mybutton_disabled <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> mybutton_disabled.png <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> Disabled State <br class="atl-forced-newline"> </td>
+</tr>
+<tr>
+<td class="confluenceTd"> @drawable/mybutton_pressed <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> mybutton_pressed.png <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> Pressed State <br class="atl-forced-newline"> </td>
+</tr>
+<tr>
+<td class="confluenceTd"> @drawable/mybutton_focused <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> mybutton_focused.png <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> Focused State <br class="atl-forced-newline"> </td>
+</tr>
+<tr>
+<td class="confluenceTd"> @drawable/mybutton_enabled <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> mybutton_enabled.png <br class="atl-forced-newline"> </td>
+<td class="confluenceTd"> Enabled/Normal State <br class="atl-forced-newline"> </td>
+</tr>
+</tbody></table>
+</div>
+
+
+<p>3. Add the button code:</p>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;LinearLayout  
+    xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>  
+</span>    xmlns:att=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/com.att.statictextbutton"</span>
+</span>    android:layout_width=<span class="code-quote">"fill_parent"</span> 
+    android:layout_height=<span class="code-quote">"fill_parent"</span>  
+    android:background=<span class="code-quote">"#FFFFFFFF"</span> 
+    android:padding=<span class="code-quote">"20sp"</span>  
+    android:orientation=<span class="code-quote">"vertical"</span> &gt;
+    &lt;com.att.widgets.lib.button.ImageButton 
+        android:id=<span class="code-quote">"@+id/button1"</span> 
+        android:layout_width=<span class="code-quote">"wrap_content"</span> 
+        android:layout_height=<span class="code-quote">"wrap_content"</span>
+        android:src=<span class="code-quote">"@drawable/mybutton"</span> 
+        android:layout_marginBottom=<span class="code-quote">"10sp"</span> 
+        android:background=<span class="code-quote">"@color/transparent"</span> /&gt;
+&lt;/LinearLayout&gt;
+</pre>
+</div></div>
+        </div>
+</body>
+</html>

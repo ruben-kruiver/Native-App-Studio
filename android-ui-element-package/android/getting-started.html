@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>AT&amp;T UI Elements Documentation - Getting Started</title>
+	<link type="text/css" rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+
+<div class="wiki-content">
+           <!-- wiki content -->
+            <h3><a name="AndroidGettingStarted-GettingStarted"></a>Getting Started</h3>
+
+<h5><a name="AndroidGettingStarted-Requirements"></a>Requirements</h5>
+
+<p>To start using the AT&amp;T Android UI Elements, you will need to have the following software downloaded and installed:</p>
+<ul>
+	<li>Download and install the latest <a rel="nofollow" class="external-link" href="http://developer.android.com/sdk/index.html">Android SDK</a>. Ensure it is release 6 or newer.</li>
+	<li><a rel="nofollow" class="external-link" href="http://www.eclipse.org/downloads/">Eclipse</a> 3.4 or 3.5</li>
+	<li>The AT&amp;T Android UI Elements zip file (atnt_android.version.7z)</li>
+	<li>The <a rel="nofollow" class="external-link" href="http://developer.android.com/sdk/eclipse-adt.html">ADT plugin for eclipse</a> is recommended.</li>
+	<li>Use the Android SDK and AVD Manager to download the Android 1.5 or 1.6 SDK.</li>
+</ul>
+
+
+<h5><a name="AndroidGettingStarted-GettingstartedwithAndroid"></a>Getting started with Android</h5>
+
+<p>We recommend visiting the <a rel="nofollow" class="external-link" href="http://developer.android.com/guide/index.html">developer guide</a> which has many tutorials and demos.</p>
+
+<h5><a name="AndroidGettingStarted-UsingtheAT&amp;TAndroidUIElements"></a>Using the AT&amp;T Android UI Elements</h5>
+
+<p>1. The package contains several projects</p>
+
+<ul>
+	<li>AttWidgetLibrary  -  Component library project</li>
+</ul>
+
+
+<ul>
+	<li>AttButtons - Demo of buttons</li>
+	<li>AttImageButtons - Demo of image buttons</li>
+	<li>AttCheckbox - Demo of the checkbox widget</li>
+	<li>AttRadioButton - Demo of the radio button widget</li>
+	<li>AttExpandingText - Demo of the expanding text field widget</li>
+	<li>AttCloseEditText - Demo of the close edit text widget</li>
+	<li>AttLabelEditText - Demo of the label edit text widget</li>
+	<li>AttSearchTextField - Demo of the search edit text field widget</li>
+	<li>AttSwitchControl - Demo of the switch control widget</li>
+	<li>AttImageToggleButton - Demo of the image toggle button widget</li>
+	<li>AttSegmentedTextToggleButton - Demo of the segmented toggle button widget</li>
+	<li>AttStaticTextToggleButton - Demo of the static text toggle button widget</li>
+</ul>
+
+
+<p>2. Add the library project to your workspace</p>
+
+<p>Menu File -&gt; Import -&gt; Import Existing Project into Workspace</p>
+
+<p><span style="" class="image-wrap"><img style="border: 0px solid black;" src="images/Import.png"></span></p>
+
+<p>3. Next, Finish</p>
+
+<p><span style="" class="image-wrap"><img style="border: 0px solid black;" src="images/ImportAttWidgetlibrary.png"></span></p>
+
+<p>4. Create a new Android project</p>
+
+<p><span style="" class="image-wrap"><img style="border: 0px solid black;" src="images/NewAndroidProject.png"></span></p>
+
+<p>5. The component library should be selected as a dependency of any project you create. Access project properties in the Android section and add the AttWidgetLibrary as a dependency.</p>
+
+<p><span style="" class="image-wrap"><img style="border: 0px solid black;" src="images/PropertiesforMyTestProject.png"></span></p>
+
+<h4><a name="AndroidGettingStarted-LayoutConfiguration"></a>Layout Configuration</h4>
+<p>6. Please note that the xmlns:att attribute of a LinearLayout or RelativeLayout needs to point to the package containing your activity code. Example AT&amp;T Android UI checkbox </p>
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"UTF-8"</span>?&gt;
+&lt;RelativeLayout 
+        xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>	xmlns:att=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/com.att.checkbox"</span>
+</span>	android:layout_width=<span class="code-quote">"wrap_content"</span> 
+	android:layout_height=<span class="code-quote">"wrap_content"</span>  &gt;
+                .
+                . 
+                .
+
+&lt;/RelativeLayout&gt;
+</pre>
+</div></div>
+
+<p>7. Start coding. You could start adding your components to your layout or java classes.</p>
+        </div>
+        
+</body>
+</html>

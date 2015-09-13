@@ -1,0 +1,497 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>AT&amp;T UI Elements Documentation - Text Fields</title>
+	<link type="text/css" rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+
+<div class="wiki-content">
+           <!-- wiki content -->
+            <h3><a name="AndroidTextFields-Introduction"></a>Introduction</h3>
+
+<p>Text Field UI elements enable users to enter text into an application. There are several types of Text Field UI elements:</p>
+
+<div class="table-wrap">
+<table class="confluenceTable"><tbody>
+<tr>
+<th class="confluenceTh"> Type </th>
+<th class="confluenceTh"> Description </th>
+</tr>
+<tr>
+<td class="confluenceTd"> Simple </td>
+<td class="confluenceTd"> When more text is entered than the field can display, all characters are shifted to the left and new characters appear on the right. A button appears on the right which when it is clicked, the entered text is cleared. </td>
+</tr>
+<tr>
+<td class="confluenceTd"> Editable </td>
+<td class="confluenceTd"> Text content can be switched from a read-only mode into an editable mode. It contains a descriptive label inside the textbox. </td>
+</tr>
+<tr>
+<td class="confluenceTd"> Expanding </td>
+<td class="confluenceTd"> When entered text reaches the end of the field, the field expands vertically by one line, until it reaches a configurable number of lines. </td>
+</tr>
+<tr>
+<td class="confluenceTd"> Search </td>
+<td class="confluenceTd"> A search icon appears at the beginning of the field </td>
+</tr>
+</tbody></table>
+</div>
+
+
+<h3><a name="AndroidTextFields-SimpleTextFields"></a>Simple Text Fields</h3>
+
+<p>You need to create a new com.att.widgets.lib.edittext.SimpleTextField object and add it to your view or layout.</p>
+
+<div class="table-wrap">
+<table class="confluenceTable"><tbody>
+<tr>
+<th class="confluenceTh"><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/simpleText.png"></span></th>
+<th class="confluenceTh"><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/SimpleTexClean.png"></span></th>
+</tr>
+</tbody></table>
+</div>
+
+
+
+
+<p>For creating a simple text-field you have to add the following code:</p>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"utf-8"</span>?&gt;
+&lt;RelativeLayout xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>    android:layout_width=<span class="code-quote">"wrap_content"</span> 
+    android:layout_height=<span class="code-quote">"wrap_content"</span>  &gt;
+
+    &lt;com.att.widgets.lib.edittext.SimpleTextField
+          android:id=<span class="code-quote">"@+id/simpleTextField"</span>
+          android:layout_width=<span class="code-quote">"wrap_content"</span> 
+          android:layout_height=<span class="code-quote">"wrap_content"</span> 
+          android:layout_below=<span class="code-quote">"@id/textFieldAndroid"</span>/&gt;
+&lt;/RelativeLayout&gt;
+
+</pre>
+</div></div>
+
+<h4><a name="AndroidTextFields-Activity"></a>Activity</h4>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">
+<span class="code-keyword">import</span> android.app.Activity;
+<span class="code-keyword">import</span> android.os.Bundle;
+
+<span class="code-keyword">import</span> com.att.widgets.lib.edittext.SimpleTextField;
+
+<span class="code-keyword">public</span> class SimpleTextFieldActivity <span class="code-keyword">extends</span> Activity {
+    /** Called when the activity is first created. */
+    @Override
+    <span class="code-keyword">public</span> void onCreate(Bundle savedInstanceState) {
+        <span class="code-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        
+        SimpleTextField simple = (SimpleTextField) findViewById(R.id.simpleTextField);
+    	SimpleTextField disabledSimple = (SimpleTextField) findViewById(R.id.simpleTextField_2);
+		SimpleTextField unfocusableSimple = (SimpleTextField) findViewById(R.id.simpleTextField_3);
+		disabledSimple.setEnabled(<span class="code-keyword">false</span>);
+		unfocusableSimple.setFocusable(<span class="code-keyword">false</span>);
+    }
+}
+</pre>
+</div></div>
+
+<h4><a name="AndroidTextFields-SimpleTextFieldFulllayoutcode"></a>SimpleTextField Full layout code</h4>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">
+&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"utf-8"</span>?&gt;
+&lt;RelativeLayout xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>	android:layout_width=<span class="code-quote">"wrap_content"</span> 
+	android:layout_height=<span class="code-quote">"wrap_content"</span>  &gt;
+	&lt;TextView android:id=<span class="code-quote">"@+id/textFieldAndroid"</span> 
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:text=<span class="code-quote">"This is a Simple Text Field."</span>  
+		  android:paddingBottom=<span class="code-quote">"10dp"</span>/&gt;
+	&lt;com.att.widgets.lib.edittext.SimpleTextField
+		  android:id=<span class="code-quote">"@+id/simpleTextField"</span>
+		  android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/textFieldAndroid"</span>/&gt;
+	&lt;TextView android:id=<span class="code-quote">"@+id/textFieldAndroid_2"</span> 
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/simpleTextField"</span>
+		  android:text=<span class="code-quote">"This is a disabled Simple Text Field."</span>  
+		  android:paddingBottom=<span class="code-quote">"10dp"</span>/&gt;
+	&lt;com.att.widgets.lib.edittext.SimpleTextField
+		  android:id=<span class="code-quote">"@+id/simpleTextField_2"</span>
+		  android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/textFieldAndroid_2"</span>/&gt;		  
+	&lt;TextView android:id=<span class="code-quote">"@+id/textFieldAndroid_3"</span> 
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/simpleTextField_2"</span>
+		  android:text=<span class="code-quote">"This is an unfocusable Simple Text Field."</span>  
+		  android:paddingBottom=<span class="code-quote">"10dp"</span>/&gt;
+	&lt;com.att.widgets.lib.edittext.SimpleTextField
+		  android:id=<span class="code-quote">"@+id/simpleTextField_3"</span>
+		  android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/textFieldAndroid_3"</span>/&gt;		  
+&lt;/RelativeLayout&gt;
+
+
+</pre>
+</div></div>
+
+<h3><a name="AndroidTextFields-CreationofEditableTextFields"></a>Creation of Editable Text Fields</h3>
+
+<p>You need to create a new com.att.widget.edittext.EditableTextField object and add it to your view or layout.</p>
+
+
+
+<div class="table-wrap">
+<table class="confluenceTable"><tbody>
+<tr>
+<th class="confluenceTh"><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/editable01.png"></span></th>
+<th class="confluenceTh"><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/editable02.png"></span></th>
+</tr>
+</tbody></table>
+</div>
+
+
+
+
+
+
+
+
+
+<p>For creating a editable text-field you have to add the following code:</p>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"utf-8"</span>?&gt;
+&lt;RelativeLayout xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>	xmlns:att=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/com.att.editabletextfield"</span>
+</span>	android:layout_width=<span class="code-quote">"wrap_content"</span> 
+	android:layout_height=<span class="code-quote">"wrap_content"</span>  &gt;
+
+&lt;com.att.widgets.lib.edittext.EditableTextField
+		  android:id=<span class="code-quote">"@+id/editableTextField_1"</span>
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  att:label_text_label=<span class="code-quote">"Hello !"</span>
+		  att:label_text_text=<span class="code-quote">"This is an example to demostrate how the Editable Text Field works."</span>
+		  /&gt; 
+&lt;/RelativeLayout&gt; 
+	
+</pre>
+</div></div>
+
+
+<p>Here is the Activity code used to disable the text-field</p>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java"><span class="code-keyword">public</span> class EditableTextFieldTest <span class="code-keyword">extends</span> Activity {
+
+    @Override
+    <span class="code-keyword">public</span> void onCreate(Bundle savedInstanceState) {
+        <span class="code-keyword">super</span>.onCreate(savedInstanceState);
+
+        setContentView(R.layout.main);
+        
+        EditableTextField editableTextField_1 = (EditableTextField) findViewById(R.id.editableTextField_1);
+        editableTextField_1.setLabelText(<span class="code-quote">"Hello!"</span>);
+        editableTextField_1.setText(<span class="code-quote">"This is an example to demostrate how the Label Edit Text works."</span>);
+        
+        EditableTextField editableTextField_2 = (EditableTextField) findViewById(R.id.editableTextField_2);
+        editableTextField_2.setLabelText(<span class="code-quote">"Hello!"</span>);
+        editableTextField_2.setText(<span class="code-quote">"This is an example to demostrate how the Label Edit Text works in disable mode."</span>);
+        editableTextField_2.setEnabled(<span class="code-keyword">false</span>);
+        
+        EditableTextField editableTextField_3 = (EditableTextField) findViewById(R.id.editableTextField_3);
+        editableTextField_3.setLabelText(<span class="code-quote">"Hello!"</span>);
+        editableTextField_3.setText(<span class="code-quote">"This is an example to demostrate how the Label Edit Text works in disable and not focusable mode."</span>);
+        editableTextField_3.setEnabled(<span class="code-keyword">false</span>);
+        editableTextField_3.setFocusable(<span class="code-keyword">false</span>);
+        
+    }
+	
+}
+</pre>
+</div></div>
+
+<h4><a name="AndroidTextFields-EditableTextFieldFulllayoutcode"></a>EditableTextField Full layout code</h4>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">
+&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"utf-8"</span>?&gt;
+&lt;RelativeLayout xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>	xmlns:att=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/com.att.editabletextfield"</span>
+</span>	android:layout_width=<span class="code-quote">"wrap_content"</span> 
+	android:layout_height=<span class="code-quote">"wrap_content"</span>  &gt;
+	
+	
+	&lt;TextView android:id=<span class="code-quote">"@+id/textFieldAndroid"</span> 
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:text=<span class="code-quote">"This is a Editable Text Field."</span>  
+		  android:paddingBottom=<span class="code-quote">"10dp"</span>/&gt;
+ 	&lt;com.att.widgets.lib.edittext.EditableTextField
+		  android:id=<span class="code-quote">"@+id/editableTextField_1"</span>
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/textFieldAndroid"</span>
+		  att:label_text_label=<span class="code-quote">"Hello !"</span>
+		  att:label_text_text=<span class="code-quote">"This is an example to demostrate how the Editable Text Field works."</span>
+		  /&gt; 
+	&lt;com.att.widgets.lib.edittext.EditableTextField
+		  android:id=<span class="code-quote">"@+id/editableTextField_2"</span>
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@+id/editableTextField_1"</span>
+		  att:label_text_label=<span class="code-quote">"Hello !"</span>
+		  att:label_text_text=<span class="code-quote">"This is an example to demostrate how the Editable Text Field works in disable mode."</span>
+		  att:label_text_enabled=<span class="code-quote">"<span class="code-keyword">false</span>"</span>
+		  /&gt; 		  
+	&lt;com.att.widgets.lib.edittext.EditableTextField
+		  android:id=<span class="code-quote">"@+id/editableTextField_3"</span>
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@+id/editableTextField_2"</span>
+		  att:label_text_label=<span class="code-quote">"Hello !"</span>
+		  att:label_text_text=<span class="code-quote">"This is an example to demostrate how the Editable Text Field works in disable mode and not focusable."</span>
+		  att:label_text_enabled=<span class="code-quote">"<span class="code-keyword">false</span>"</span>
+		  /&gt; 		  
+	
+&lt;/RelativeLayout&gt;
+
+
+</pre>
+</div></div>
+
+
+<h3><a name="AndroidTextFields-ExpandingTextFields"></a>Expanding Text Fields</h3>
+
+<p>You need to create a new com.att.widgets.lib.edittext.ExpandEditText object and add it to your view or layout.
+<br class="atl-forced-newline">
+<br class="atl-forced-newline"></p>
+
+
+<p><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/expandingTextField01.png"></span></p>
+
+
+<p><br class="atl-forced-newline">
+For creating a expanding text-field you have to add the following code:</p>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">
+&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"UTF-8"</span>?&gt;
+&lt;RelativeLayout 
+        xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>	android:layout_width=<span class="code-quote">"wrap_content"</span> 
+        android:layout_height=<span class="code-quote">"wrap_content"</span>&gt;
+	&lt;com.att.widgets.lib.edittext.ExpandingTextField
+		  android:id=<span class="code-quote">"@+id/expandingTextField_1"</span>
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/textFieldAndroid"</span>
+		  android:layout_margin=<span class="code-quote">"5dip"</span>/&gt;
+&lt;/RelativeLayout&gt;
+	 
+</pre>
+</div></div>
+
+<h4><a name="AndroidTextFields-ExpandingTextFieldFulllayoutcode"></a>ExpandingTextField Full layout code</h4>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"UTF-8"</span>?&gt;
+&lt;RelativeLayout xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>	android:layout_width=<span class="code-quote">"wrap_content"</span> android:layout_height=<span class="code-quote">"wrap_content"</span>  &gt;
+	&lt;TextView android:id=<span class="code-quote">"@+id/textFieldAndroid"</span> 
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:text=<span class="code-quote">"This is a Expanding Text Field."</span>  /&gt;
+
+	&lt;com.att.widgets.lib.edittext.ExpandingTextField
+		  android:id=<span class="code-quote">"@+id/expandingTextField_1"</span>
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/textFieldAndroid"</span>
+		  android:layout_margin=<span class="code-quote">"5dip"</span>/&gt;
+	&lt;TextView android:id=<span class="code-quote">"@+id/textFieldAndroid_1"</span> 
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:text=<span class="code-quote">"This is a Expanding Text Field Disabled."</span>  
+		  android:layout_below=<span class="code-quote">"@+id/expandingTextField_1"</span>/&gt;
+	&lt;com.att.widgets.lib.edittext.ExpandingTextField
+		  android:id=<span class="code-quote">"@+id/expandingTextField_2"</span>
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@+id/textFieldAndroid_1"</span>
+		  android:layout_margin=<span class="code-quote">"5dip"</span>/&gt;
+	&lt;TextView android:id=<span class="code-quote">"@+id/textFieldAndroid_2"</span> 
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:text=<span class="code-quote">"This is a Expanding Text Field Disabled and not focusabled."</span>  
+		   android:layout_below=<span class="code-quote">"@+id/expandingTextField_2"</span>/&gt;
+	&lt;com.att.widgets.lib.edittext.ExpandingTextField
+		  android:id=<span class="code-quote">"@+id/expandingTextField_3"</span>
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@+id/textFieldAndroid_2"</span>
+		  android:layout_margin=<span class="code-quote">"5dip"</span>/&gt;
+	
+&lt;/RelativeLayout&gt;
+
+
+</pre>
+</div></div>
+
+<h4><a name="AndroidTextFields-Activity"></a>Activity</h4>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">
+<span class="code-keyword">import</span> com.att.widgets.lib.edittext.ExpandingTextField;
+
+<span class="code-keyword">import</span> android.app.Activity;
+<span class="code-keyword">import</span> android.os.Bundle;
+
+<span class="code-keyword">public</span> class ExpandingTextFieldActivity <span class="code-keyword">extends</span> Activity {
+    /** Called when the activity is first created. */
+    @Override
+    <span class="code-keyword">public</span> void onCreate(Bundle savedInstanceState) {
+        <span class="code-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        
+        ((ExpandingTextField)findViewById(R.id.expandingTextField_2)).setEnabled(<span class="code-keyword">false</span>);
+        ((ExpandingTextField)findViewById(R.id.expandingTextField_3)).setEnabled(<span class="code-keyword">false</span>);
+        ((ExpandingTextField)findViewById(R.id.expandingTextField_3)).setFocusable(<span class="code-keyword">false</span>);
+    }
+}
+
+</pre>
+</div></div>
+
+<h3><a name="AndroidTextFields-SearchTextFields"></a>Search Text Fields</h3>
+
+<p>You need to create a new com.att.widget.edittext.SearchTextField object and add it to your view or layout.</p>
+
+<div class="table-wrap">
+<table class="confluenceTable"><tbody>
+<tr>
+<th class="confluenceTh"><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/searchTextField.png"></span></th>
+<th class="confluenceTh"><span style="" class="image-wrap"><img style="border: 1px solid black;" src="images/searchDone.png"></span></th>
+</tr>
+</tbody></table>
+</div>
+
+
+<p>For creating a search text-field you have to add the following code:</p>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java"> 	
+
+&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"utf-8"</span>?&gt;
+&lt;RelativeLayout xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>	android:layout_width=<span class="code-quote">"wrap_content"</span> 
+	android:layout_height=<span class="code-quote">"wrap_content"</span>  &gt;
+	&lt;com.att.widgets.lib.edittext.SearchTextField
+		  android:id=<span class="code-quote">"@+id/searchTextField"</span>
+		  android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/textFieldAndroid"</span>/&gt; 
+&lt;/RelativeLayout&gt;
+</pre>
+</div></div>
+
+<h5><a name="AndroidTextFields-Activitycodefromscreenshotexample"></a>Activity code from screenshot example</h5>
+
+<p>This code shows how to add click listeners to the search UI element</p>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java"> 	
+<span class="code-keyword">import</span> android.app.Activity;
+<span class="code-keyword">import</span> android.os.Bundle;
+<span class="code-keyword">import</span> android.view.View;
+<span class="code-keyword">import</span> android.widget.Toast;
+
+<span class="code-keyword">import</span> com.att.widgets.lib.edittext.SearchTextField;
+
+<span class="code-keyword">public</span> class SearchTextFieldActivity <span class="code-keyword">extends</span> Activity <span class="code-keyword">implements</span> View.OnClickListener{
+   
+	<span class="code-keyword">private</span> SearchTextField search;
+	<span class="code-keyword">private</span> SearchTextField disabledSearch;
+	<span class="code-keyword">private</span> SearchTextField unfocusedSearch;
+	
+    @Override
+    <span class="code-keyword">public</span> void onCreate(Bundle savedInstanceState) {
+        <span class="code-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        search = (SearchTextField) findViewById(R.id.searchTextField);
+        disabledSearch = (SearchTextField) findViewById(R.id.searchTextField_2);
+        unfocusedSearch = (SearchTextField) findViewById(R.id.searchTextField_3);
+        disabledSearch.setEnabled(<span class="code-keyword">false</span>);
+        unfocusedSearch.setFocusable(<span class="code-keyword">false</span>);
+        search.setOnClickListener(<span class="code-keyword">this</span>);
+    }
+
+
+	<span class="code-keyword">public</span> void onClick(View v) {
+		search.setText("");
+		Toast.makeText(<span class="code-keyword">this</span>, <span class="code-quote">"Searching content..."</span>, Toast.LENGTH_SHORT).show();
+	}
+
+
+}
+</pre>
+</div></div>
+
+<h4><a name="AndroidTextFields-SearchTextFieldFulllayoutcode"></a>SearchTextField Full layout code</h4>
+
+<div style="border-width: 1px;" class="code panel"><div class="codeContent panelContent">
+<pre class="code-java">&lt;?xml version=<span class="code-quote">"1.0"</span> encoding=<span class="code-quote">"utf-8"</span>?&gt;
+&lt;RelativeLayout xmlns:android=<span class="code-quote">"http:<span class="code-comment">//schemas.android.com/apk/res/android"</span>
+</span>	android:layout_width=<span class="code-quote">"wrap_content"</span> 
+	android:layout_height=<span class="code-quote">"wrap_content"</span>  &gt;
+	&lt;TextView android:id=<span class="code-quote">"@+id/textFieldAndroid"</span> 
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:text=<span class="code-quote">"This is a Search Text Field."</span>  
+		  android:paddingBottom=<span class="code-quote">"10dp"</span>/&gt;
+ 	&lt;com.att.widgets.lib.edittext.SearchTextField
+		  android:id=<span class="code-quote">"@+id/searchTextField"</span>
+		  android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/textFieldAndroid"</span>/&gt; 
+	&lt;TextView android:id=<span class="code-quote">"@+id/textFieldAndroid_2"</span> 
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/searchTextField"</span>
+		  android:text=<span class="code-quote">"This is a disabled Search Text Field."</span>  
+		  android:paddingBottom=<span class="code-quote">"10dp"</span>/&gt;
+ 	&lt;com.att.widgets.lib.edittext.SearchTextField
+		  android:id=<span class="code-quote">"@+id/searchTextField_2"</span>
+		  android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/textFieldAndroid_2"</span>/&gt; 		  
+	&lt;TextView android:id=<span class="code-quote">"@+id/textFieldAndroid_3"</span> 
+		  android:layout_width=<span class="code-quote">"fill_parent"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/searchTextField_2"</span>
+		  android:text=<span class="code-quote">"This is an unfocused Search Text Field."</span>  
+		  android:paddingBottom=<span class="code-quote">"10dp"</span>/&gt;
+ 	&lt;com.att.widgets.lib.edittext.SearchTextField
+		  android:id=<span class="code-quote">"@+id/searchTextField_3"</span>
+		  android:layout_width=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_height=<span class="code-quote">"wrap_content"</span> 
+		  android:layout_below=<span class="code-quote">"@id/textFieldAndroid_3"</span>/&gt; 		  	  
+&lt;/RelativeLayout&gt;
+
+</pre>
+</div></div>
+        </div>
+</body>
+</html>
