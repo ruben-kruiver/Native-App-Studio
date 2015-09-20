@@ -1,17 +1,34 @@
 <resources>
     <string name="app_name">HangMan</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_new_game">Play game</string>
+    <string name="title_activity_new_game">HangMan - Play game</string>
     <string name="activity_return_main_menu">Back to Main Menu</string>
-    <string name="menu_single_player">Single Player</string>
-    <string name="menu_multiplayer_player">Multi Player</string>
+
+
+    <string name="menu_new_game">New game</string>
+    <string name="menu_return_game">Return to the game</string>
     <string name="menu_settings">Settings</string>
+    <string name="menu_highscores">Highscores</string>
     <string name="menu_quit">Quit</string>
-    <string name="title_activity_add_player">Add players</string>
 
     <string name="title_activity_main_menu">HangMan</string>
-    <string name="title_activity_multi_player_game">MultiPlayer Game</string>
+    <string name="title_activity_high_score">HighScore</string>
     <string name="title_activity_settings">Settings</string>
 
-    <string name="settings_difficulty">Difficulty</string>
+    <string name="settings_settings_word_length">Word length</string>
+    <string name="settings_chances">Chances</string>
+
+    <string name="gameplay_new_game">Here is your word. Guess a letter.</string>
+    <string name="gameplay_duplicate_character">You already used this character\n</string>
+    <string name="gameplay_lost">Too bad! You have lost. Better luck next time!</string>
+    <string name="gameplay_won">Amazing! You have won the game.</string>
+    <string name="gameplay_correct_guess">Good guess!\n</string>
+    <string name="gameplay_incorrect_guess">Oh no, that was not correct.\n</string>
+    <string name="gameplay_chances_remaining">You have %d chances remaining</string>
+
+    <string name="error_dictionary_io_exception">The dictionary could not be loaded</string>
+    <string name="error_dictionary_read_exception">The dictionary could not be read</string>
+    <string name="error_no_history_available">The history file could not be found or loaded. Highscores are not available.</string>
+
+    <string name="history_column_score">Score</string>
+    <string name="history_column_date">Date</string>
 </resources>

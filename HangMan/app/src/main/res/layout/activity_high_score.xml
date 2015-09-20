@@ -1,0 +1,306 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:configChanges="orientation"
+    android:screenOrientation="portrait">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/background"
+        android:scaleType = "centerCrop"
+        android:layout_gravity="center_horizontal|top" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/button_new_game"
+        android:onClick="newGame"
+        android:text="@string/menu_return_game"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="2">
+
+            <TextView
+                android:layout_column="0"
+                android:layout_width="match_parent"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="@string/history_column_score">
+            </TextView>
+
+            <TextView
+                android:layout_column="1"
+                android:layout_width="match_parent"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="@string/history_column_date">
+            </TextView>
+
+        </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/row_score_1"
+                android:layout_column="4">
+
+                <TextView
+                    android:layout_column="0"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_score_1">
+                    </TextView>
+
+                <TextView
+                    android:layout_column="1"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_time_1">
+                </TextView>
+
+                </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/row_score_2">
+
+                <TextView
+                    android:layout_column="0"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_score_2">
+                </TextView>
+
+                <TextView
+                    android:layout_column="1"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_time_2">
+                </TextView>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/row_score_3">
+
+                <TextView
+                    android:layout_column="0"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_score_3">
+                </TextView>
+
+                <TextView
+                    android:layout_column="1"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_time_3">
+                </TextView>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/row_score_4">
+
+                <TextView
+                    android:layout_column="0"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_score_4">
+                </TextView>
+
+                <TextView
+                    android:layout_column="1"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_time_4">
+                </TextView>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/row_score_5">
+
+                <TextView
+                    android:layout_column="0"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_score_5">
+                </TextView>
+
+                <TextView
+                    android:layout_column="1"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_time_5">
+                </TextView>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/row_score_6">
+
+                <TextView
+                    android:layout_column="0"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_score_6">
+                </TextView>
+
+                <TextView
+                    android:layout_column="1"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_time_6">
+                </TextView>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/row_score_7">
+
+                <TextView
+                    android:layout_column="0"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_score_7">
+                </TextView>
+
+                <TextView
+                    android:layout_column="1"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_time_7">
+                </TextView>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/row_score_8">
+
+                <TextView
+                    android:layout_column="0"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_score_8">
+                </TextView>
+
+                <TextView
+                    android:layout_column="1"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_time_8">
+                </TextView>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/row_score_9">
+
+                <TextView
+                    android:layout_column="0"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_score_9">
+                </TextView>
+
+                <TextView
+                    android:layout_column="1"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_time_9">
+                </TextView>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/row_score_10">
+
+                <TextView
+                    android:layout_column="0"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_score_10">
+                </TextView>
+
+                <TextView
+                    android:layout_column="1"
+                    android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:editable="true"
+                    android:id="@+id/value_time_10">
+                </TextView>
+
+            </TableRow>
+    </TableLayout>
+</RelativeLayout>

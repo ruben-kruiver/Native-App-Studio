@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preferences_name">nl.mprog.apps.hangman11079592</string>
+    <string name="dictionary_filename">words.xml</string>
+    <string name="word_node_name">item</string>
+</resources>

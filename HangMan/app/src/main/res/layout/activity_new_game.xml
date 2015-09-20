@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nl.mprog.apps.hangman11079592.NewGameActivity"
+    android:configChanges="orientation"
     android:screenOrientation="portrait">
 
     <ImageView
@@ -14,38 +14,48 @@
         android:scaleType = "centerCrop"
         android:layout_gravity="center_horizontal|top" />
 
-    <SurfaceView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <nl.mprog.apps.hangman11079592.view.FigureView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:id="@+id/figureView"
         android:minHeight="300dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignWithParentIfMissing="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/feedbackMessage"
-        android:layout_below="@+id/figureView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textSize="40dp" />
+        android:id="@+id/button_new_game"
+        android:onClick="newGame"
+        android:text="@string/menu_new_game"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/displayWord"
-        android:textSize="40dp"
-        android:layout_below="@+id/feedbackMessage"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/feedbackMessage"
+            android:gravity="center_horizontal"
+            android:layout_below="@id/figureView"
+            android:background="#80FFFFFF"
+            android:textColor="#000000"
+            android:textSize="25dp"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="center_horizontal"
+            android:id="@+id/displayWord"
+            android:layout_below="@id/feedbackMessage"
+            android:background="#80FFFFFF"
+            android:textColor="#000000"
+            android:width="@dimen/activity_horizontal_margin"
+            android:textSize="25dp" />
 
     <TableLayout
         android:layout_width="fill_parent"
@@ -56,6 +66,7 @@
         <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/qwerty_row"
             android:gravity="center_horizontal|bottom">
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -78,7 +89,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="w"
                     android:id="@+id/key_w"
-                    android:layout_toRightOf="@id/key_q" />
+                    android:layout_toRightOf="@id/key_q"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -88,7 +100,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="e"
                     android:id="@+id/key_e"
-                    android:layout_toRightOf="@id/key_w" />
+                    android:layout_toRightOf="@id/key_w"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -98,7 +111,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="r"
                     android:id="@+id/key_r"
-                    android:layout_toRightOf="@id/key_e" />
+                    android:layout_toRightOf="@id/key_e"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -108,7 +122,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="t"
                     android:id="@+id/key_t"
-                    android:layout_toRightOf="@id/key_r" />
+                    android:layout_toRightOf="@id/key_r"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -118,7 +133,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="y"
                     android:id="@+id/key_y"
-                    android:layout_toRightOf="@id/key_t" />
+                    android:layout_toRightOf="@id/key_t"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -128,7 +144,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="u"
                     android:id="@+id/key_u"
-                    android:layout_toRightOf="@id/key_y" />
+                    android:layout_toRightOf="@id/key_y"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -138,7 +155,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="i"
                     android:id="@+id/key_i"
-                    android:layout_toRightOf="@id/key_u" />
+                    android:layout_toRightOf="@id/key_u"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -148,7 +166,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="o"
                     android:id="@+id/key_o"
-                    android:layout_toRightOf="@id/key_i" />
+                    android:layout_toRightOf="@id/key_i"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -158,7 +177,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="p"
                     android:id="@+id/key_p"
-                    android:layout_toRightOf="@id/key_o" />
+                    android:layout_toRightOf="@id/key_o"
+                    android:onClick="enterChar" />
             </RelativeLayout>
         </TableRow>
 
@@ -167,8 +187,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal|bottom">
+
             <RelativeLayout
                 android:layout_gravity="center">
+
                 <Button
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="@dimen/activity_keypad_button"
@@ -176,7 +198,8 @@
                     android:minHeight="@dimen/activity_keypad_button"
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="a"
-                    android:id="@+id/key_a" />
+                    android:id="@+id/key_a"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -186,7 +209,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="s"
                     android:id="@+id/key_s"
-                    android:layout_toRightOf="@id/key_a" />
+                    android:layout_toRightOf="@id/key_a"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -196,7 +220,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="d"
                     android:id="@+id/key_d"
-                    android:layout_toRightOf="@id/key_s" />
+                    android:layout_toRightOf="@id/key_s"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -206,7 +231,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="f"
                     android:id="@+id/key_f"
-                    android:layout_toRightOf="@id/key_d" />
+                    android:layout_toRightOf="@id/key_d"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -216,7 +242,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="g"
                     android:id="@+id/key_g"
-                    android:layout_toRightOf="@id/key_f" />
+                    android:layout_toRightOf="@id/key_f"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -226,7 +253,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="h"
                     android:id="@+id/key_h"
-                    android:layout_toRightOf="@id/key_g" />
+                    android:layout_toRightOf="@id/key_g"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -236,7 +264,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="j"
                     android:id="@+id/key_j"
-                    android:layout_toRightOf="@id/key_h" />
+                    android:layout_toRightOf="@id/key_h"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -246,7 +275,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="k"
                     android:id="@+id/key_k"
-                    android:layout_toRightOf="@id/key_j" />
+                    android:layout_toRightOf="@id/key_j"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -256,7 +286,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="l"
                     android:id="@+id/key_l"
-                    android:layout_toRightOf="@id/key_k"/>
+                    android:layout_toRightOf="@id/key_k"
+                    android:onClick="enterChar"/>
             </RelativeLayout>
         </TableRow>
 
@@ -265,9 +296,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center_horizontal|bottom">
+
             <RelativeLayout
                 android:layout_gravity="center"
                 android:layout_margin="0dp">
+
                 <Button
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="@dimen/activity_keypad_button"
@@ -275,7 +308,8 @@
                     android:minHeight="@dimen/activity_keypad_button"
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="z"
-                    android:id="@+id/key_z" />
+                    android:id="@+id/key_z"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -285,7 +319,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="x"
                     android:id="@+id/key_x"
-                    android:layout_toRightOf="@id/key_z" />
+                    android:layout_toRightOf="@id/key_z"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -295,7 +330,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="c"
                     android:id="@+id/key_c"
-                    android:layout_toRightOf="@id/key_x" />
+                    android:layout_toRightOf="@id/key_x"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -305,7 +341,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="v"
                     android:id="@+id/key_v"
-                    android:layout_toRightOf="@id/key_c" />
+                    android:layout_toRightOf="@id/key_c"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -315,7 +352,8 @@
                     android:minWidth="@dimen/activity_keypad_button"
                     android:text="b"
                     android:id="@+id/key_b"
-                    android:layout_toRightOf="@id/key_v" />
+                    android:layout_toRightOf="@id/key_v"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -325,7 +363,8 @@
                     android:minWidth="35dp"
                     android:text="n"
                     android:id="@+id/key_n"
-                    android:layout_toRightOf="@id/key_b" />
+                    android:layout_toRightOf="@id/key_b"
+                    android:onClick="enterChar" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -335,9 +374,9 @@
                     android:minWidth="35dp"
                     android:text="m"
                     android:id="@+id/key_m"
-                    android:layout_toRightOf="@id/key_n" />
+                    android:layout_toRightOf="@id/key_n"
+                    android:onClick="enterChar" />
             </RelativeLayout>
         </TableRow>
-
     </TableLayout>
 </RelativeLayout>
