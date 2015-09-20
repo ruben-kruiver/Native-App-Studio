@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 
-import nl.mprog.apps.hangman11079592.basemodel.Figure;;
+import nl.mprog.apps.hangman11079592.basemodel.Figure;
 import nl.mprog.apps.hangman11079592.basemodel.HangManActivity;
 import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
 import nl.mprog.apps.hangman11079592.basemodel.DictionaryReader;
@@ -412,7 +412,7 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
      */
     protected void setFeedbackMessage(int gamestate) {
         String chances_remaining = String.format(this.getResources().getString(R.string.gameplay_chances_remaining),
-                this.figure.getRemainingStages());;
+                this.figure.getRemainingStages());
 
         switch (gamestate) {
             case HangMan.GUESS_OK:

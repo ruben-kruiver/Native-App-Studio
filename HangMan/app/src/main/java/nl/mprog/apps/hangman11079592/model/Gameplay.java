@@ -198,7 +198,7 @@ public class Gameplay implements Serializable {
         for (int index = 0; index < this.secret_word.length(); index++) {
             Character character = this.secret_word.charAt(index);
 
-            if (this.correct.contains(character.toLowerCase(character))) {
+            if (this.correct.contains(Character.toLowerCase(character))) {
                 // We need to account for the spaces between the underscores
                 int underscore_index = index * 2;
                 underscoreString.setCharAt(underscore_index, character);
