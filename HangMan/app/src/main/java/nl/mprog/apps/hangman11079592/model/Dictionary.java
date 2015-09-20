@@ -22,17 +22,12 @@ public class Dictionary {
     /**
      * The limited word list for this game based on the value of the maximum word length
      */
-    protected ArrayList<String> limited_word_list;
-
-    /**
-     * The current minimum word length stored in the limited list
-     */
-    protected int current_minimum_word_length;
+    protected ArrayList<String> limitedWordList;
 
     /**
      * The current maximum word length stored in the limited list
      */
-    protected int current_maximum_word_length;
+    protected int currentMaximumWordLength;
 
 
     /**
@@ -85,26 +80,17 @@ public class Dictionary {
     }
 
     /**
-     * Get the reader used by this dictionary
-     * @return The dictionary
-     */
-    public DictionaryReader getReader() {
-        return this.reader;
-    }
-
-
-    /**
      * Load the limited word list based on the settings word length. This will be cached
      * for performance improvements.
      */
     protected ArrayList<String> getLimitedWordList(int minimum_length, int maximum_length) {
         // If the list was not created or doesn't match the required length range (re)build the list
-        if (this.limited_word_list == null
-                || this.current_maximum_word_length == minimum_length
-                || this.current_maximum_word_length == maximum_length) {
-            this.limited_word_list = this.reader.getWords(minimum_length, maximum_length);
+        if (this.limitedWordList == null
+                || this.currentMaximumWordLength == minimum_length
+                || this.currentMaximumWordLength == maximum_length) {
+            this.limitedWordList = this.reader.getWords(minimum_length, maximum_length);
         }
 
-        return this.limited_word_list;
+        return this.limitedWordList;
     }
 }

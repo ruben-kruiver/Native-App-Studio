@@ -13,9 +13,10 @@ import android.widget.TextView;
 import nl.mprog.apps.hangman11079592.model.HangMan;
 
 /**
- *
+ * This activity provides an interface for changing the
+ * user preferences and game settings
  */
-public class SettingsActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
+public class SettingsActivity extends Activity {
 
     /**
      * The chances seekbar
@@ -87,21 +88,6 @@ public class SettingsActivity extends Activity implements SeekBar.OnSeekBarChang
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -134,7 +120,5 @@ public class SettingsActivity extends Activity implements SeekBar.OnSeekBarChang
 
         Intent data = this.getIntent();
         data.putExtra("wordLength", wordLength);
-
-        this.setResult(HangMan.HISTORY_REQUEST, data);
     }
 }

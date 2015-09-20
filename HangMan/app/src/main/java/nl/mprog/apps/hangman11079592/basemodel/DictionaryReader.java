@@ -55,9 +55,4 @@ public abstract class DictionaryReader {
      * @param maximumLength The maximum word length
      */
     public abstract ArrayList<String> getWords(int minimumLength, int maximumLength);
-
-    /**
-     * Get an entry from the file identified by the index
-     */
-    public abstract String getEntry(int index) throws DictionaryReaderException;
 }

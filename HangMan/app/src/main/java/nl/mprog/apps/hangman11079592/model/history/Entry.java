@@ -1,6 +1,5 @@
 package nl.mprog.apps.hangman11079592.model.history;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,16 +10,16 @@ import java.util.Date;
  * @since 2015
  * @version 0.1b
  */
-public class Entry implements Serializable, Comparable<Entry> {
+public class Entry implements Comparable<Entry> {
     /**
      * The combined number of letters of correct guessed words
      */
-    protected int total_letters;
+    protected int totalLetters;
 
     /**
      * The number of sequential words guessed
      */
-    protected int total_correct_words;
+    protected int totalCorrectWords;
 
     /**
      * The date object to request the current date/time
@@ -30,16 +29,16 @@ public class Entry implements Serializable, Comparable<Entry> {
     /**
      * The time in milliseconds since Epoch of the last won game
      */
-    protected Long last_time;
+    protected Long lastTime;
 
     /**
      * Initialize a new entry
      */
     public Entry() {
         this.date = new Date();
-        this.total_correct_words = 0;
-        this.total_letters = 0;
-        this.last_time = this.date.getTime();
+        this.totalCorrectWords = 0;
+        this.totalLetters = 0;
+        this.lastTime = this.date.getTime();
     }
 
     /**
@@ -50,9 +49,9 @@ public class Entry implements Serializable, Comparable<Entry> {
      */
     public Entry(int total_letters, int total_correct_words, Long time) {
         this();
-        this.total_letters = total_letters;
-        this.total_correct_words = total_correct_words;
-        this.last_time = time;
+        this.totalLetters = total_letters;
+        this.totalCorrectWords = total_correct_words;
+        this.lastTime = time;
     }
 
     /**
@@ -61,37 +60,37 @@ public class Entry implements Serializable, Comparable<Entry> {
      * @param word
      */
     public void addWord(String word) {
-        this.total_correct_words++;
-        this.total_letters += word.length();
-        this.last_time = this.date.getTime();
+        this.totalCorrectWords++;
+        this.totalLetters += word.length();
+        this.lastTime = this.date.getTime();
     }
 
     /**
      * Get the score for this entry
      */
     public Integer getScore() {
-        return this.total_correct_words * this.total_letters;
+        return this.totalCorrectWords * this.totalLetters;
     }
 
     /**
      * Get the time in milliseconds for the last won game
      */
     public Long getTime() {
-        return this.last_time;
+        return this.lastTime;
     }
 
     /**
      * Get the total number of words
      */
     public Integer getTotalWordCount() {
-        return this.total_correct_words;
+        return this.totalCorrectWords;
     }
 
     /**
      * Get the total number of letters in all words
      */
     public Integer getTotalLetters() {
-        return this.total_letters;
+        return this.totalLetters;
     }
 
     /**

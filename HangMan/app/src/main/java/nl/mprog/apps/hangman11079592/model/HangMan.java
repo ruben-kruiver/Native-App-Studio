@@ -19,9 +19,6 @@ public class HangMan {
     public static final int DEFAULT_WORD_LENGTH = 7;
     public static final int DEFAULT_CHANCES = 7;
 
-    public static final int SETTINGS_REQUEST = 1;
-    public static final int HISTORY_REQUEST = 2;
-
     protected static History historyInstance;
 
     /**

@@ -80,17 +80,6 @@ public class XMLReader extends DictionaryReader {
         return limitedList;
     }
 
-    @Override
-    public String getEntry(int index) throws DictionaryReaderException {
-        String word = this.words.get(index);
-
-        if (word == null) {
-            throw new DictionaryReaderException();
-        }
-
-        return word;
-    }
-
     /**
      * Initialize the XML file handler
      */

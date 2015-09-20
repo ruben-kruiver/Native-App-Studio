@@ -11,14 +11,10 @@ import java.util.Date;
 
 import nl.mprog.apps.hangman11079592.basemodel.HangManActivity;
 import nl.mprog.apps.hangman11079592.model.HangMan;
+import nl.mprog.apps.hangman11079592.model.History;
 import nl.mprog.apps.hangman11079592.model.history.Entry;
 
 public class HighScoreActivity extends HangManActivity {
-
-    /**
-     * The table view
-     */
-    protected TableLayout tableLayout;
 
     /**
      * When the activity is called execute the actions

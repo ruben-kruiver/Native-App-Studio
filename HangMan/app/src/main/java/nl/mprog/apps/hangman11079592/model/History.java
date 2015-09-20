@@ -36,7 +36,7 @@ public class History {
     /**
      * The current entry in the sequence of games
      */
-    protected Entry current_entry;
+    protected Entry currentEntry;
 
     /**
      * The context where the history was created
@@ -60,6 +60,7 @@ public class History {
     public History(String filename) {
         this.filename = filename;
         this.entries = new ArrayList();
+        this.loadHistory();
     }
 
     /**
@@ -68,23 +69,23 @@ public class History {
      */
     public void startNewSequence() {
         // Don't restart a sequence when the previous is empty
-        if (this.current_entry != null
-                && this.current_entry.getScore() == 0) { return; }
+        if (this.currentEntry != null
+                && this.currentEntry.getScore() == 0) { return; }
 
-        this.current_entry = null;
-        this.current_entry = new Entry();
-        this.entries.add(this.current_entry);
+        this.currentEntry = null;
+        this.currentEntry = new Entry();
+        this.entries.add(this.currentEntry);
     }
 
     /**
      * Add a new word to the current entry
      */
     public void newWordWon(String word) {
-        if (this.current_entry == null) {
+        if (this.currentEntry == null) {
             this.startNewSequence();
         }
 
-        this.current_entry.addWord(word);
+        this.currentEntry.addWord(word);
     }
 
     /**
@@ -112,7 +113,7 @@ public class History {
             xmlSerializer.startTag(null, "entries");
 
             for (Entry entry : this.entries) {
-                this.addEntryToNode(xmlSerializer, entry);
+                this.createNodeFromEntry(xmlSerializer, entry);
             }
 
             xmlSerializer.endTag(null, "entries");
@@ -180,7 +181,7 @@ public class History {
     /**
      * Add a new node to the DOM tree
      */
-    protected void addEntryToNode(XmlSerializer xmlSerializer, Entry entry) throws IOException {
+    protected void createNodeFromEntry(XmlSerializer xmlSerializer, Entry entry) throws IOException {
         xmlSerializer.startTag(null, "entry");
         xmlSerializer.attribute(null, "total_letters", entry.getTotalLetters().toString());
         xmlSerializer.attribute(null, "total_words", entry.getTotalWordCount().toString());

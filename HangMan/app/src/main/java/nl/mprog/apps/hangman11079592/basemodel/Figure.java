@@ -21,17 +21,17 @@ public abstract class Figure {
     /**
      * The number of stages to complete this figure
      */
-    protected int number_of_stages;
+    protected int numberOfStages;
 
     /**
      * The number of the current stage
      */
-    protected int current_stage;
+    protected int currentStage;
 
     /**
      * The display metrics for conversion
      */
-    protected DisplayMetrics display_metrics;
+    protected DisplayMetrics displayMetrics;
 
     /**
      * Set the canvas for this figure
@@ -44,7 +44,7 @@ public abstract class Figure {
      * Set the display metrics for screen conversion
      */
     public void setDisplayMetrics(DisplayMetrics metrics) {
-        this.display_metrics = metrics;
+        this.displayMetrics = metrics;
     }
 
     /**
@@ -70,10 +70,10 @@ public abstract class Figure {
 
     /**
      * Set the total number of stages for this figure
-     * @param number_of_stages
+     * @param numberOfStages
      */
-    public void setNumberOfStages(int number_of_stages) {
-        this.number_of_stages = number_of_stages;
+    public void setNumberOfStages(int numberOfStages) {
+        this.numberOfStages = numberOfStages;
     }
 
     /**
@@ -81,7 +81,7 @@ public abstract class Figure {
      * @return
      */
     public int getNumberOfStages() {
-        return this.number_of_stages;
+        return this.numberOfStages;
     }
 
     /**
@@ -89,7 +89,7 @@ public abstract class Figure {
      * @return The number of stages remaining
      */
     public int getRemainingStages() {
-        return this.number_of_stages - this.current_stage;
+        return this.numberOfStages - this.currentStage;
     }
 
     /**
@@ -97,7 +97,7 @@ public abstract class Figure {
      * @return The number of the current stage
      */
     public int getCurrentStage() {
-        return this.current_stage;
+        return this.currentStage;
     }
 
     /**
@@ -105,7 +105,7 @@ public abstract class Figure {
      * @return Returns TRUE if the figure is complete, FALSE otherwise
      */
     public boolean isComplete() {
-        return this.current_stage >= this.number_of_stages;
+        return this.currentStage >= this.numberOfStages;
     }
 
     /**
@@ -114,6 +114,6 @@ public abstract class Figure {
      * @return the float size
      */
     public float getSize(int dp_unit) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp_unit, this.display_metrics);
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp_unit, this.displayMetrics);
     }
 }

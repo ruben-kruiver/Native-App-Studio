@@ -15,7 +15,7 @@ import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
  * @since 2015
  * @version 0.1b
  */
-public class Gameplay implements Serializable {
+public class Gameplay {
     /**
      * The dictionary file for the instance
      */
@@ -24,12 +24,12 @@ public class Gameplay implements Serializable {
     /**
      * The secret word for this game
      */
-    protected String secret_word;
+    protected String secretWord;
 
     /**
      * The string that can be displayed to the player
      */
-    protected String display_word;
+    protected String displayWord;
 
     /**
      * The list of characters that have been tried
@@ -49,12 +49,12 @@ public class Gameplay implements Serializable {
     /**
      * The minimum number of characters for the word
      */
-    protected int minimum_chars;
+    protected int minimumChars;
 
     /**
      * The maximum number of characters for the word
      */
-    protected int maximum_chars;
+    protected int maximumChars;
 
     /**
      * Create a new gameplay
@@ -82,12 +82,12 @@ public class Gameplay implements Serializable {
 
     /**
      * Set the boundries for the words that can be played
-     * @param minimum_chars
-     * @param maximum_chars
+     * @param minimumChars
+     * @param maximumChars
      */
-    public void setWordLength(int minimum_chars, int maximum_chars) {
-        this.minimum_chars = minimum_chars;
-        this.maximum_chars = maximum_chars;
+    public void setWordLength(int minimumChars, int maximumChars) {
+        this.minimumChars = minimumChars;
+        this.maximumChars = maximumChars;
     }
 
     /**
@@ -102,7 +102,7 @@ public class Gameplay implements Serializable {
      *
      */
     public void startGame() throws DictionaryReaderException {
-        String word = this.dictionary.getRandomWord(this.minimum_chars, this.maximum_chars);
+        String word = this.dictionary.getRandomWord(this.minimumChars, this.maximumChars);
         this.loadGame(word);
     }
 
@@ -127,7 +127,7 @@ public class Gameplay implements Serializable {
             this.figure.nextStage();
 
             if (this.figure.isComplete()) {
-                this.display_word = this.secret_word;
+                this.displayWord = this.secretWord;
                 HangMan.getHistoryInstance().startNewSequence();
                 return HangMan.GAME_LOST;
             }
@@ -137,11 +137,11 @@ public class Gameplay implements Serializable {
 
         this.correct.add(guess);
 
-        this.createBuildDisplayWord();
+        this.buildDisplayWord();
 
-        if (this.display_word.indexOf("_") == -1) {
-            this.display_word = this.secret_word;
-            HangMan.getHistoryInstance().newWordWon(this.secret_word);
+        if (this.displayWord.indexOf("_") == -1) {
+            this.displayWord = this.secretWord;
+            HangMan.getHistoryInstance().newWordWon(this.secretWord);
 
             // Make sure that each item will be persisted
             HangMan.getHistoryInstance().storeHistory();
@@ -152,51 +152,44 @@ public class Gameplay implements Serializable {
     }
 
     /**
-     * Get the current figure
-     */
-    public Figure getGameplayFigure() {
-        return this.figure;
-    }
-
-    /**
      * Get the word that can be displayed to the user. Unknown characters
      * are replaced by underscores.
      */
     public String getDisplayWord() {
-        return this.display_word.toString();
+        return this.displayWord.toString();
     }
 
     /**
      * Load a new game instance
      */
-    protected void loadGame(String secret_word) {
+    protected void loadGame(String secretWord) {
         this.correct = new ArrayList(); // Allow for flexible length of correct guessed chars
         this.tries = new ArrayList();
-        this.resetGame(secret_word);
+        this.resetGame(secretWord);
     }
 
     /**
      * Reset the game to it's basic values with a new secret word
      *
-     * @param secret_word The secret wordt to guess
+     * @param secretWord The secret wordt to guess
      */
-    protected void resetGame(String secret_word) {
-        this.secret_word = secret_word;
+    protected void resetGame(String secretWord) {
+        this.secretWord = secretWord;
         this.tries.clear();
         this.correct.clear();
-        this.createBuildDisplayWord();
+        this.buildDisplayWord();
         this.figure.reset();
     }
 
     /**
      * Build the display word based on the guessed characters and the secret word
      */
-    protected void createBuildDisplayWord() {
+    protected void buildDisplayWord() {
         StringBuilder underscoreString = this.buildUnderscoreString();
 
         // Replace the underscores with the guessed characters in the word
-        for (int index = 0; index < this.secret_word.length(); index++) {
-            Character character = this.secret_word.charAt(index);
+        for (int index = 0; index < this.secretWord.length(); index++) {
+            Character character = this.secretWord.charAt(index);
 
             if (this.correct.contains(Character.toLowerCase(character))) {
                 // We need to account for the spaces between the underscores
@@ -205,7 +198,7 @@ public class Gameplay implements Serializable {
             }
         }
 
-        this.display_word = underscoreString.toString();
+        this.displayWord = underscoreString.toString();
     }
 
     /**
@@ -213,7 +206,7 @@ public class Gameplay implements Serializable {
      * @return Returns TRUE when the character is present in the secret word, FALSE otherwise
      */
     protected boolean isInSecretWord(char guess) {
-        return this.secret_word.toLowerCase().indexOf(guess) > -1;
+        return this.secretWord.toLowerCase().indexOf(guess) > -1;
     }
 
     /**
@@ -221,7 +214,7 @@ public class Gameplay implements Serializable {
      * @return The build string from underscores
      */
     protected StringBuilder buildUnderscoreString() {
-        char[] underscores = new char[this.secret_word.length()];
+        char[] underscores = new char[this.secretWord.length()];
         Arrays.fill(underscores, '_');
 
         // Build a string of an underscore and one empty space

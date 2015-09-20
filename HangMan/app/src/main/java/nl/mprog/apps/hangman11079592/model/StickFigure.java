@@ -15,22 +15,12 @@ import nl.mprog.apps.hangman11079592.basemodel.Figure;
 public class StickFigure extends Figure {
 
     /**
-     * The number of stages for this figure
-     */
-    protected int number_of_stages;
-
-    /**
-     * The current stage
-     */
-    protected int current_stage;
-
-    /**
      * Initialize the figure
      */
     public StickFigure() {
         super();
 
-        this.current_stage = 0;
+        this.currentStage = 0;
     }
 
     @Override
@@ -90,44 +80,44 @@ public class StickFigure extends Figure {
 
     @Override
     public void reset() {
-        this.current_stage = 0;
+        this.currentStage = 0;
     }
 
     @Override
     public void reset(int stage) {
         if (stage < 0) { stage = 0; }
-        else if (stage > this.number_of_stages) { stage = this.number_of_stages; }
+        else if (stage > this.numberOfStages) { stage = this.numberOfStages; }
 
-        this.current_stage = stage;
+        this.currentStage = stage;
     }
 
     @Override
     public void nextStage() {
-        this.current_stage++;
+        this.currentStage++;
     }
 
     @Override
-    public void setNumberOfStages(int number_of_stages) {
-        if (number_of_stages < 1) {
-            number_of_stages = 1;
+    public void setNumberOfStages(int numberOfStages) {
+        if (numberOfStages < 1) {
+            numberOfStages = 1;
         }
 
-        this.number_of_stages = number_of_stages;
+        this.numberOfStages = numberOfStages;
     }
 
     @Override
     public int getNumberOfStages() {
-        return this.number_of_stages;
+        return this.numberOfStages;
     }
 
     @Override
     public int getRemainingStages() {
-        return this.getNumberOfStages() - this.current_stage;
+        return this.getNumberOfStages() - this.currentStage;
     }
 
     @Override
     public int getCurrentStage() {
-        return this.current_stage;
+        return this.currentStage;
     }
 
     @Override
