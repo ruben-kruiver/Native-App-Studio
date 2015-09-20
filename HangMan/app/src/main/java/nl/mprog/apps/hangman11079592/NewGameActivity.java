@@ -16,10 +16,10 @@ import android.widget.TextView;
 
 import java.io.IOException;
 
+import nl.mprog.apps.hangman11079592.basemodel.DictionaryReader;
 import nl.mprog.apps.hangman11079592.basemodel.Figure;
 import nl.mprog.apps.hangman11079592.basemodel.HangManActivity;
 import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
-import nl.mprog.apps.hangman11079592.basemodel.DictionaryReader;
 import nl.mprog.apps.hangman11079592.model.Gameplay;
 import nl.mprog.apps.hangman11079592.model.HangMan;
 import nl.mprog.apps.hangman11079592.model.History;

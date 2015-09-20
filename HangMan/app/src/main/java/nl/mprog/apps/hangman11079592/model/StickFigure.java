@@ -2,7 +2,6 @@ package nl.mprog.apps.hangman11079592.model;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.view.View;
 
 import nl.mprog.apps.hangman11079592.basemodel.Figure;
 

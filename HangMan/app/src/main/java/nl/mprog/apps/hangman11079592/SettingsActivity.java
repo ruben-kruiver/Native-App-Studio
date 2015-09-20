@@ -10,9 +10,6 @@ import android.view.MenuItem;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import nl.mprog.apps.hangman11079592.model.Gameplay;
 import nl.mprog.apps.hangman11079592.model.HangMan;
 
 /**

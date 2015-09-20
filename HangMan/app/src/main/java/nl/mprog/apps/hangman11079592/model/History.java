@@ -1,6 +1,5 @@
 package nl.mprog.apps.hangman11079592.model;
 
-import android.content.res.XmlResourceParser;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;

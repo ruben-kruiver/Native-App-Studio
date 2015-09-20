@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
 import nl.mprog.apps.hangman11079592.basemodel.DictionaryReader;
+import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
 
 /**
  * Load a dictionary from a XMLReader file source. The loaded XMLReader file should

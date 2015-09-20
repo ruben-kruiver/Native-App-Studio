@@ -3,8 +3,8 @@ package nl.mprog.apps.hangman11079592.model;
 import java.util.ArrayList;
 import java.util.Random;
 
-import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
 import nl.mprog.apps.hangman11079592.basemodel.DictionaryReader;
+import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
 
 /**
  * This class handles the Dictionary file for the Gameplay game
