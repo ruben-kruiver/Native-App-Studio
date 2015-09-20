@@ -43,7 +43,7 @@ public class HighScoreActivity extends HangManActivity {
     protected void displayHighScores() {
         ArrayList<Entry> highscores = HangMan.getHistoryInstance().getHistory();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
         Integer position = 1;
         for (Entry entry : highscores) {
