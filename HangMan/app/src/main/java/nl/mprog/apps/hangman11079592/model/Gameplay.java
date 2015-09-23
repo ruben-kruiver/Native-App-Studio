@@ -1,12 +1,9 @@
 package nl.mprog.apps.hangman11079592.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import nl.mprog.apps.hangman11079592.basemodel.DictionaryReader;
 import nl.mprog.apps.hangman11079592.basemodel.Figure;
-import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
 
 /**
  * This class handles the Gameplay game and all its dependencies.
@@ -16,116 +13,56 @@ import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
  * @version 0.1b
  */
 public class Gameplay {
-    /**
-     * The dictionary file for the instance
-     */
+
     protected Dictionary dictionary;
 
-    /**
-     * The secret word for this game
-     */
     protected String secretWord;
 
-    /**
-     * The string that can be displayed to the player
-     */
-    protected String displayWord;
+    protected String displayWord; // This is the word/underscores the player sees
 
-    /**
-     * The list of characters that have been tried
-     */
     protected ArrayList<Character> tries;
 
-    /**
-     * The list of correctly guessed characters
-     */
     protected ArrayList<Character> correct;
 
-    /**
-     * The StickFigure for this game
-     */
     protected Figure figure;
 
-    /**
-     * The minimum number of characters for the word
-     */
-    protected int minimumChars;
-
-    /**
-     * The maximum number of characters for the word
-     */
-    protected int maximumChars;
-
-    /**
-     * Create a new gameplay
-     */
     public Gameplay() {
         HangMan.getHistoryInstance().startNewSequence();
     }
 
-    /**
-     * Set the Figure for this game
-     * @param figure
-     */
     public void setFigure(Figure figure) {
         this.figure = figure;
     }
 
-    /**
-     * Load the dictionary from a DictionaryReader source
-     *
-     * @param reader The reader for the dictionary
-     */
-    public void setReader(DictionaryReader reader) {
-        this.dictionary = new Dictionary(reader);
+    public void setDictionary(Dictionary dictionary) {
+        this.dictionary = dictionary;
     }
 
     /**
-     * Set the boundries for the words that can be played
-     * @param minimumChars
-     * @param maximumChars
-     */
-    public void setWordLength(int minimumChars, int maximumChars) {
-        this.minimumChars = minimumChars;
-        this.maximumChars = maximumChars;
-    }
-
-    /**
-     * Get the Dictionary instance used in this game
-     */
-    public Dictionary getDictionary() {
-        return this.dictionary;
-    }
-
-    /**
-     * Start a game. If a game is already started, it will reset with a new game
+     * Start a game. If a game is already started, it will reset with a new word
      *
      */
-    public void startGame() throws DictionaryReaderException {
-        String word = this.dictionary.getRandomWord(this.minimumChars, this.maximumChars);
+    public void startGame() {
+        String word = this.dictionary.getRandomWord();
         this.loadGame(word);
     }
 
-    /**
-     * Enter the char the player has guessed and validate it's outcome
-     * @param guess
-     */
     public int enterChar(char guess) {
-        /**
-         * Check if the character has already been tried
-         */
+        // When the character has already been tried
+        // make it possible to notify the player
         if (this.tries.contains(guess)) {
             return HangMan.DUPLICATE_ATTEMPT;
         }
 
-        /**
-         * Add this character to the list of tried characters
-         */
+         // Add this character to the list of tried characters
         this.tries.add(guess);
+
         // If the guess is not in the secret word let the figure go to the next stage
         if (!this.isInSecretWord(guess)) {
             this.figure.nextStage();
 
+            // If the figure ran out of stages the word was not guessed
+            // and the game has been list
             if (this.figure.isComplete()) {
                 this.displayWord = this.secretWord;
                 HangMan.getHistoryInstance().startNewSequence();
@@ -138,12 +75,14 @@ public class Gameplay {
         this.correct.add(guess);
 
         this.buildDisplayWord();
-
+        // When the last guessed character resulted in
+        // a word without any underscore characters in it
+        // the the player has won the game
         if (this.displayWord.indexOf("_") == -1) {
             this.displayWord = this.secretWord;
             HangMan.getHistoryInstance().newWordWon(this.secretWord);
 
-            // Make sure that each item will be persisted
+            // Make sure that each won game will be persisted in the history
             HangMan.getHistoryInstance().storeHistory();
             return HangMan.GAME_WON;
         }
@@ -159,11 +98,8 @@ public class Gameplay {
         return this.displayWord.toString();
     }
 
-    /**
-     * Load a new game instance
-     */
     protected void loadGame(String secretWord) {
-        this.correct = new ArrayList(); // Allow for flexible length of correct guessed chars
+        this.correct = new ArrayList();
         this.tries = new ArrayList();
         this.resetGame(secretWord);
     }
@@ -171,7 +107,7 @@ public class Gameplay {
     /**
      * Reset the game to it's basic values with a new secret word
      *
-     * @param secretWord The secret wordt to guess
+     * @param secretWord The secret word to guess
      */
     protected void resetGame(String secretWord) {
         this.secretWord = secretWord;
@@ -201,10 +137,6 @@ public class Gameplay {
         this.displayWord = underscoreString.toString();
     }
 
-    /**
-     * Validate the character with the secret word
-     * @return Returns TRUE when the character is present in the secret word, FALSE otherwise
-     */
     protected boolean isInSecretWord(char guess) {
         return this.secretWord.toLowerCase().indexOf(guess) > -1;
     }

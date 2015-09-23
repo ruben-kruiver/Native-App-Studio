@@ -3,94 +3,26 @@ package nl.mprog.apps.hangman11079592.model;
 import java.util.ArrayList;
 import java.util.Random;
 
-import nl.mprog.apps.hangman11079592.basemodel.DictionaryReader;
-import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
-
 /**
- * This class handles the Dictionary file for the Gameplay game
+ * This class contains a list of words where the words can be selected from
+ * and the user can play with
  *
  * @author Ruben Kruiver
  * @since 2015
  * @version 0.1b
  */
 public class Dictionary {
-    /**
-     * The DictionaryReader for this dictionary to use to get the contents from a dictionary file
-     */
-    protected DictionaryReader reader;
 
-    /**
-     * The limited word list for this game based on the value of the maximum word length
-     */
-    protected ArrayList<String> limitedWordList;
+    protected ArrayList<String> wordList;
 
-    /**
-     * The current maximum word length stored in the limited list
-     */
-    protected int currentMaximumWordLength;
-
-
-    /**
-     * Initialize the Dictionary
-     *
-     * @param reader The reader for this dictionary
-     */
-    public Dictionary(DictionaryReader reader) {
-
-        this.reader = reader;
+    public Dictionary(ArrayList<String> wordList) {
+        this.wordList = wordList;
     }
 
-    /**
-     * Get a random word from the dictionary that that fits within the supplied limits
-     *
-     * @param minimumChars The minimum number of chars for the word
-     * @param maximumChars The maximum number of chars for the word
-     * @return The found word
-     */
-    public String getRandomWord(int minimumChars, int maximumChars) throws DictionaryReaderException {
-        this.reader.loadFile();
-        ArrayList<String> words = this.getLimitedWordList(minimumChars, maximumChars);
+    public String getRandomWord() {
+       Random rand = new Random();
+        int index = rand.nextInt(this.wordList.size());
 
-        Random rand = new Random();
-        int index = rand.nextInt(words.size());
-
-        return words.get(index);
-    }
-
-    /**
-     * Get the longest word from the dictionary
-     *
-     * @return The found word
-     */
-    public String getLongestWord() throws DictionaryReaderException {
-        this.reader.loadFile();
-        ArrayList<String> words = this.reader.getContents();
-
-        int max = 0;
-        String longestWord = "";
-
-        for (String word : words) {
-            if (word.length() > max) {
-                max = word.length();
-                longestWord = word;
-            }
-        }
-
-        return longestWord;
-    }
-
-    /**
-     * Load the limited word list based on the settings word length. This will be cached
-     * for performance improvements.
-     */
-    protected ArrayList<String> getLimitedWordList(int minimum_length, int maximum_length) {
-        // If the list was not created or doesn't match the required length range (re)build the list
-        if (this.limitedWordList == null
-                || this.currentMaximumWordLength == minimum_length
-                || this.currentMaximumWordLength == maximum_length) {
-            this.limitedWordList = this.reader.getWords(minimum_length, maximum_length);
-        }
-
-        return this.limitedWordList;
+        return this.wordList.get(index);
     }
 }

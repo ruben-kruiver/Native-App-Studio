@@ -14,9 +14,6 @@ import nl.mprog.apps.hangman11079592.basemodel.Figure;
  */
 public class StickFigure extends Figure {
 
-    /**
-     * Initialize the figure
-     */
     public StickFigure() {
         super();
 
@@ -32,23 +29,23 @@ public class StickFigure extends Figure {
         // because the calculations depend on each other and each value is needed
         // to actually draw the figure
 
-        float stroke_width = this.getSize(5);
+        float stroke_width = this.getPixelSizeFromDPUnit(5);
 
-        float top_margin = this.getSize(30);
+        float top_margin = this.getPixelSizeFromDPUnit(30);
 
-        float radius_head = this.getSize(30);
+        float radius_head = this.getPixelSizeFromDPUnit(30);
         float head_center_x = (canvas.getWidth() / 2);
         float head_center_y = top_margin + radius_head; // Margin from the top
 
         float torso_left = canvas.getWidth() / 2;
         float torso_top = head_center_y + radius_head;
         float torso_right = torso_left;
-        float torso_bottom = torso_top + this.getSize(100);
+        float torso_bottom = torso_top + this.getPixelSizeFromDPUnit(100);
 
         float left_arm_left = torso_left - (canvas.getWidth() / 5);
         float left_arm_top = torso_top;
         float left_arm_right = torso_left + (stroke_width / 2);
-        float left_arm_bottom = torso_top + this.getSize(50);
+        float left_arm_bottom = torso_top + this.getPixelSizeFromDPUnit(50);
 
         float right_arm_left = left_arm_right - stroke_width;
         float right_arm_top = left_arm_bottom;
@@ -56,14 +53,14 @@ public class StickFigure extends Figure {
         float right_arm_bottom = torso_top;
 
         float left_leg_left = torso_left - (canvas.getWidth() / 5);
-        float left_leg_top = torso_bottom + getSize(50);
+        float left_leg_top = torso_bottom + getPixelSizeFromDPUnit(50);
         float left_leg_right = torso_left;
         float left_leg_bottom = torso_bottom;
 
         float right_leg_left = torso_left;
         float right_leg_top = torso_bottom;
         float right_leg_right = torso_right + (canvas.getWidth() / 5);
-        float right_leg_bottom = torso_bottom + getSize(50);
+        float right_leg_bottom = torso_bottom + getPixelSizeFromDPUnit(50);
 
         Paint paintBlack = new Paint();
         paintBlack.setColor(Color.BLACK);
@@ -84,6 +81,10 @@ public class StickFigure extends Figure {
     }
 
     @Override
+    /**
+     * This method resets the figure to a defined state or the last possible state
+     * the stick figure can have
+     */
     public void reset(int stage) {
         if (stage < 0) { stage = 0; }
         else if (stage > this.numberOfStages) { stage = this.numberOfStages; }

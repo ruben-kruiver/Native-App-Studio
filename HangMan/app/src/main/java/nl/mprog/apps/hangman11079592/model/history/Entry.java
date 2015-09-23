@@ -11,29 +11,15 @@ import java.util.Date;
  * @version 0.1b
  */
 public class Entry implements Comparable<Entry> {
-    /**
-     * The combined number of letters of correct guessed words
-     */
+
     protected int totalLetters;
 
-    /**
-     * The number of sequential words guessed
-     */
     protected int totalCorrectWords;
 
-    /**
-     * The date object to request the current date/time
-     */
     protected Date date;
 
-    /**
-     * The time in milliseconds since Epoch of the last won game
-     */
     protected Long lastTime;
 
-    /**
-     * Initialize a new entry
-     */
     public Entry() {
         this.date = new Date();
         this.totalCorrectWords = 0;
@@ -54,11 +40,6 @@ public class Entry implements Comparable<Entry> {
         this.lastTime = time;
     }
 
-    /**
-     * Add a new word to the list of won games
-     *
-     * @param word
-     */
     public void addWord(String word) {
         this.totalCorrectWords++;
         this.totalLetters += word.length();
@@ -66,35 +47,28 @@ public class Entry implements Comparable<Entry> {
     }
 
     /**
-     * Get the score for this entry
+     * The score is the multiplication of the total correct words and the total letters of the words
+     * @return
      */
     public Integer getScore() {
         return this.totalCorrectWords * this.totalLetters;
     }
 
-    /**
-     * Get the time in milliseconds for the last won game
-     */
     public Long getTime() {
         return this.lastTime;
     }
 
-    /**
-     * Get the total number of words
-     */
     public Integer getTotalWordCount() {
         return this.totalCorrectWords;
     }
 
-    /**
-     * Get the total number of letters in all words
-     */
     public Integer getTotalLetters() {
         return this.totalLetters;
     }
 
     /**
      * Allow for sorting in ascending order based on the score for the entry
+     *
      * @param entry The entry to compare to
      * @return
      */

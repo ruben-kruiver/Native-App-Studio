@@ -21,18 +21,12 @@ public class HangMan {
 
     protected static History historyInstance;
 
-    /**
-     * Set the history instance for HangMan
-     * @param historyInstance
-     */
+    // These methods make it possible to share the same
+    // history instance throughout each part of the game
     public static void setHistory(History historyInstance) {
         HangMan.historyInstance = historyInstance;
     }
 
-    /**
-     * Get the history instance for HangMan
-     * @return The history instance
-     */
     public static History getHistoryInstance() {
         return HangMan.historyInstance;
     }

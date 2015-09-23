@@ -10,22 +10,25 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.IOException;
+import org.xmlpull.v1.XmlPullParserException;
 
-import nl.mprog.apps.hangman11079592.basemodel.DictionaryReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+
 import nl.mprog.apps.hangman11079592.basemodel.Figure;
 import nl.mprog.apps.hangman11079592.basemodel.HangManActivity;
-import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
+import nl.mprog.apps.hangman11079592.model.Dictionary;
 import nl.mprog.apps.hangman11079592.model.Gameplay;
 import nl.mprog.apps.hangman11079592.model.HangMan;
 import nl.mprog.apps.hangman11079592.model.History;
 import nl.mprog.apps.hangman11079592.model.StickFigure;
 import nl.mprog.apps.hangman11079592.model.reader.XMLReader;
-import nl.mprog.apps.hangman11079592.view.FigureView;
 
 /**
  * This class handles the game flow of the Gameplay. It is the first entry point for
@@ -38,105 +41,31 @@ import nl.mprog.apps.hangman11079592.view.FigureView;
  */
 
 public class NewGameActivity extends HangManActivity implements SurfaceHolder.Callback {
-    /**
-     * The word that will be displayed on the screen
-     * for the user to play. The unknown letters will
-     * be substituted by underscore characters
-     */
-    protected TextView displayWord;
 
-    /**
-     * The feedback to the user based on the last results
-     */
+    protected TextView displayWord; // This attribute contains the string that will
+                                    // be displayed to the screen for the user to guess
+                                    // Unknown characters are replaced by underscores
+
     protected TextView feedbackMessage;
 
-    /**
-     * The Figure that will be displayed during this game
-     */
     protected Figure figure;
 
-    /**
-     * The gameplay instance
-     */
     protected Gameplay gameplay;
 
-    /**
-     * Contains the preferences for this game
-     */
     protected SharedPreferences preferences;
 
-    /**
-     * Contains the reader that the Dictionary can work with
-     */
-    protected DictionaryReader reader;
-
-    /**
-     * The filename of the dictionary file
-     */
     protected String dictionaryFile;
 
-    /**
-     * This contains the SurfaceHolder instance where the
-     * Figure can draw on
-     */
     protected SurfaceHolder surfaceHolder;
 
-    /**
-     * Contains the History instance of this game
-     */
     protected History history;
 
-    /**
-     * Flag set when the game is complete
-     */
     protected boolean gameComplete = true;
 
-    /**
-     * Flag set when the desired word length should be reset
-     */
     protected boolean resetWordLength = false;
 
-    /**
-     * Flag set when the number of stages of the figure should be altered
-     */
     protected boolean resetFigureStages = false;
 
-    /**
-     * @param savedInstanceState
-     */
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Set the view
-        setContentView(R.layout.activity_new_game);
-
-        // Initialize the activity parameters
-        this.initParams();
-
-        // Load the dictionary
-        this.loadDictionaryReader();
-
-        // Load the history instance
-        this.loadHistory();
-
-        // Load the gameplay instance
-        this.loadGameplay();
-
-        // Load the figure and it's view
-        this.initFigure();
-
-        // Start the game
-        this.startGame();
-    }
-
-    /**
-     * Start the menu
-     *
-     * @param menu
-     * @return TRUE on success, FALSE on failure
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -144,13 +73,6 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
         return true;
     }
 
-    /**
-     * Handle the action based on the selection option in the menu
-     * by the player
-     *
-     * @param item
-     * @return
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -158,21 +80,13 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
 
         switch (id) {
             case R.id.action_settings :
-                // Set a flag to reset the word length
-                // The callback will fail because
-                // this activity runs as single instance
+                // Set a flag to reset the word length when the user returns from
+                // the settings activity. The callback will fail because
+                // this activity runs as single instance to reduce memory usage.
                 this.resetWordLength = true;
 
                 intent.setClass(this, SettingsActivity.class);
-                int longest_word_length;
-                try {
-                    String longest_word = this.gameplay.getDictionary().getLongestWord();
-                    longest_word_length = longest_word.length();
-                } catch (DictionaryReaderException ex) {
-                    longest_word_length = HangMan.DEFAULT_WORD_LENGTH;
-                }
-
-                intent.putExtra("max_word_length", longest_word_length);
+                intent.putExtra("maxWordLength", XMLReader.getLongestWordLength());
                 this.startActivity(intent);
                 break;
 
@@ -193,64 +107,33 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
         return true;
     }
 
-    /**
-     * Resume the current game after interruption
-     */
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // If resumed from settings reset the values for the game
-        if (this.resetWordLength) {
-            Integer wordLength = this.preferences.getInt("wordLength", HangMan.DEFAULT_WORD_LENGTH);
-            this.gameplay.setWordLength(1, wordLength);
-            this.resetFigureStages = true;
-            this.resetWordLength = false;
-        }
-    }
-
-    /**
-     * Store the SurfaceHolder when the SurfaceView is created
-     * @param holder
-     */
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         this.surfaceHolder = holder;
         this.drawFigure();
     }
 
-    /**
-     * Execute actions when there was a change on the SurfaceView
-     * @param holder
-     * @param format
-     * @param width
-     * @param height
-     */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         // No actions needed. The figure will be drawn with each guess
     }
 
-    /**
-     * Clean up after the SurfaceView is destroyed
-     * @param holder
-     */
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        // The holder is stored so that the figure can always draw to the canvast
+        // The holder is stored so that the figure can always draw to the canvas
+        // We need to remove the reference here
         this.surfaceHolder = null;
     }
 
-    /**
-     * Start a new game in this activity
-     * @param view
-     */
     public void newGame(View view) {
         this.startGame();
     }
 
     /**
-     * This method handles the guessed character by the player
+     * This method handles the guessed character by the player. After that
+     * it will display the toggled button to a dark gray state to give
+     * visual confirmation which letters are already tried
+     *
      * @param view
      */
     public void enterChar(View view) {
@@ -267,30 +150,63 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
         this.guessChar(guess);
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_new_game);
+
+        this.setPrimaryClassAttributes();
+
+        this.loadHistory();
+
+        this.initFigure();
+
+        this.loadGameplay();
+
+        this.startGame();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // When the user retursn from the settings activity
+        // reset the values for the game
+        if (this.resetWordLength) {
+            this.gameplay.setDictionary(this.loadDictionary());
+
+            // The figure needs to be reset when
+            // the new game starts, not sooner
+            this.resetFigureStages = true;
+
+            this.resetWordLength = false;
+        }
+    }
+
     /**
-     * Initialize the basic parameters for the application
-     * to function properly
+     * This method initializes the primary class attributes
+     * when this class is first called through the onCreate method
      */
-    protected void initParams() {
+    protected void setPrimaryClassAttributes() {
         this.dictionaryFile = this.getString(R.string.dictionary_filename);
         this.preferences = this.getSharedPreferences(this.getString(R.string.preferences_name),
-                                                        Context.MODE_PRIVATE);
+                Context.MODE_PRIVATE);
 
         this.displayWord = (TextView) this.findViewById(R.id.displayWord);
         this.feedbackMessage = (TextView) this.findViewById(R.id.feedbackMessage);
     }
 
-    /**
-     * Load the gameplay instance
-     */
     protected void loadGameplay() {
-        if (this.gameplay != null) {
-            return;
-        }
+        if (this.gameplay == null) {
+            this.gameplay = new Gameplay();
 
-        this.gameplay = new Gameplay();
-        Integer wordLength = this.preferences.getInt("wordLength", HangMan.DEFAULT_WORD_LENGTH);
-        this.gameplay.setWordLength(1, wordLength);
+            // Load the dictionary for the game
+            this.gameplay.setDictionary(this.loadDictionary());
+
+            // Set the figure for the current gameplay
+            this.gameplay.setFigure(this.figure);
+        }
     }
 
     /**
@@ -306,13 +222,9 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
         this.figure.setDisplayMetrics(this.getResources().getDisplayMetrics());
         this.figure.setNumberOfStages(maximum_guesses_allowed);
 
-        // Set the figure for the current gameplay
-        this.gameplay.setFigure(figure);
-
         // Load the figureview from the layout
-        FigureView figureView = (FigureView)this.findViewById(R.id.figureView);
+        SurfaceView figureView = (SurfaceView)this.findViewById(R.id.figureView);
         figureView.setZOrderOnTop(true);    // necessary
-        figureView.setFigure(this.figure);
 
         // Load the viewholder for this view
         SurfaceHolder figureViewHolder = figureView.getHolder();
@@ -325,19 +237,29 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
     }
 
     /**
-     * Load the dictionary reader instance
+     * This method will load the dictionary from the dictionary file. If it fails
+     * to do so, it will set the feedback message to inform the user and loads
+     * an empty dictionary.
      */
-    protected void loadDictionaryReader() {
+    protected Dictionary loadDictionary() {
+        Dictionary dictionary;
         try {
-            this.reader = new XMLReader(this.getApplicationContext().getAssets().open(this.dictionaryFile));
-        } catch (IOException e) {
+            InputStream inputStream = this.getApplicationContext().getAssets().open(this.dictionaryFile);
+            Integer maximumLength = this.preferences.getInt("wordLength", HangMan.DEFAULT_WORD_LENGTH);
+            dictionary = XMLReader.loadDictionary(inputStream, 1, maximumLength);
+            return dictionary;
+        } catch (IOException | XmlPullParserException ex) {
+            // We catch the exception and display an error to the user
+            // Additionally we create and empty Dictionary to prevent
+            // null pointer exceptions
+
             this.feedbackMessage.setText(R.string.error_dictionary_io_exception);
+            dictionary = new Dictionary(new ArrayList<String>());
         }
+
+        return dictionary;
     }
 
-    /**
-     * Load the history instance
-     */
     protected void loadHistory() {
         String filename = this.getFilesDir() + this.getString(R.string.history_filename);
         this.history = new History(filename);
@@ -347,43 +269,41 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
     }
 
     /**
-     * Start a new game
+     * This method will start a new game and will reset the figure
+     * and the word and feedback message
      */
     protected void startGame() {
-        try {
-            if (this.resetFigureStages) {
-                Integer chances = this.preferences.getInt("chances", HangMan.DEFAULT_CHANCES);
-                this.figure.setNumberOfStages(chances);
-                this.resetFigureStages = false;
-            }
-
-            // Load the game
-            gameplay.setReader(this.reader);
-            gameplay.startGame();
-
-            // Set the initial message for the feedback
-            this.setFeedbackMessage(HangMan.NEW_GAME);
-            this.feedbackMessage.setText(this.getResources().getString(R.string.gameplay_new_game));
-
-            // Also reset the buttons to the original color
-            this.resetKeyboardButtons();
-
-            // Make sure the color of the text is black
-            // this could be changed in a previous game
-            this.displayWord.setTextColor(Color.BLACK);
-
-            // Set the underscores for the word
-            this.displayWord.setText(this.gameplay.getDisplayWord());
-
-            // Enable the game
-            this.gameComplete = false;
-        } catch (DictionaryReaderException e) {
-            this.feedbackMessage.setText(R.string.error_dictionary_read_exception);
+        if (this.resetFigureStages) {
+            Integer chances = this.preferences.getInt("chances", HangMan.DEFAULT_CHANCES);
+            this.figure.setNumberOfStages(chances);
+            this.resetFigureStages = false;
         }
+
+        this.gameplay.startGame();
+
+        // Set the initial message for the feedback
+        this.setFeedbackMessage(HangMan.NEW_GAME);
+        this.feedbackMessage.setText(this.getResources().getString(R.string.gameplay_new_game));
+
+        // Reset the buttons to the original color
+        // because they might be displayed in dark gray
+        // from an earlier game
+        this.resetKeyboardButtons();
+
+        // Make sure the color of the text is black
+        // this could be changed in a previous game
+        this.displayWord.setTextColor(Color.BLACK);
+
+        this.displayWord.setText(this.gameplay.getDisplayWord());
+
+        // (Re-)enable the game
+        this.gameComplete = false;
     }
 
     /**
-     * Enter the guessed character and validate it's outcome
+     * Enter the guessed character and validate it's outcome. It also sends
+     * a signal to the figure that it needs to draw itself on the surface
+     *
      * @param guess
      */
     protected void guessChar(String guess)  {
@@ -392,9 +312,11 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
         this.setFeedbackMessage(result);
 
         if (result == HangMan.GAME_LOST) {
+            // Display the lost word in red
             this.displayWord.setTextColor(Color.RED);
             this.gameComplete = true;
         } else if (result == HangMan.GAME_WON) {
+            // Display the won word in green
             this.displayWord.setTextColor(Color.GREEN);
             this.gameComplete = true;
 
@@ -408,6 +330,7 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
     /**
      * Create and display the feedback message to the user based
      * on the last game state.
+     *
      * @param gamestate
      */
     protected void setFeedbackMessage(int gamestate) {
@@ -443,9 +366,6 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
         }
     }
 
-    /**
-     * Draw the figure on the canvas
-     */
     protected void drawFigure() {
         if (this.surfaceHolder == null) {
             return;
@@ -475,7 +395,8 @@ public class NewGameActivity extends HangManActivity implements SurfaceHolder.Ca
     }
 
     /**
-     * Transition to the highscores activity
+     * Let the player transition to the highscores screen
+     * to view the results
      */
     protected void transitionToHighscores() {
         Intent intent = new Intent();

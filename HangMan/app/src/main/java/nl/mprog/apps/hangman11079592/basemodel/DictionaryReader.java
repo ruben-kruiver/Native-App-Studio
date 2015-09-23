@@ -1,9 +1,12 @@
 package nl.mprog.apps.hangman11079592.basemodel;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
+import nl.mprog.apps.hangman11079592.model.Dictionary;
 
 /**
  * An abstract reader for collecting data from a file.
@@ -13,46 +16,44 @@ import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
  * @version 0.1b
  */
 public abstract class DictionaryReader {
-    /**
-     * The input stream for this reader
-     */
+
     protected InputStream inputStream;
 
-    /**
-     * The list of words
-     */
+    protected int minimumLength;
+
+    protected int maximumLength;
+
     protected ArrayList<String> words;
 
     /**
-     * Flag set when the dictionary has been loaded
-     */
-    protected boolean dictionaryIsLoaded;
-
-    /**
-     * Initialize the reader with an InputStrem
+     * Set the constructor protected to encourage the use of the static loadDictionary method
      * @param inputStream
+     * @param minimumLength
+     * @param maximumLength
      */
-    public DictionaryReader(InputStream inputStream) {
+    protected DictionaryReader(InputStream inputStream, int minimumLength, int maximumLength) {
         this.inputStream = inputStream;
-        this.words = new ArrayList();
-        this.dictionaryIsLoaded = false;
+        this.minimumLength = minimumLength;
+        this.maximumLength = maximumLength;
     }
 
     /**
-     * Load the dictionary file into the memory
-     */
-    public abstract void loadFile() throws DictionaryReaderException;
-
-    /**
-     * Load the content from the file
-     */
-    public abstract ArrayList<String> getContents() throws DictionaryReaderException;
-
-    /**
-     * Get the list of words with a specific length range
+     * Create a new Dictionary containing the words with length between the minimumLength
+     * and the maximumLength
      *
-     * @param minimumLength The minimum word length
-     * @param maximumLength The maximum word length
+     * @param inputStream
+     * @param minimumLength
+     * @param maximumLength
+     * @return The Dictionary with the limited words list
      */
-    public abstract ArrayList<String> getWords(int minimumLength, int maximumLength);
+    public static Dictionary loadDictionary(InputStream inputStream, int minimumLength, int maximumLength)
+            throws IOException, XmlPullParserException {
+        // This method should be implemented by each of it's descendants
+        throw new IllegalStateException();
+    }
+
+    public static Integer getLongestWordLength() {
+        // This method should be implemented by each of it's descendants
+        throw new IllegalStateException();
+    }
 }

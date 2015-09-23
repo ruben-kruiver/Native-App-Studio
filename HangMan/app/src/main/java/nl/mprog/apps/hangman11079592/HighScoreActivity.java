@@ -16,11 +16,6 @@ import nl.mprog.apps.hangman11079592.model.history.Entry;
 
 public class HighScoreActivity extends HangManActivity {
 
-    /**
-     * When the activity is called execute the actions
-     * @param savedInstanceState
-     */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,17 +24,6 @@ public class HighScoreActivity extends HangManActivity {
         this.displayHighScores();
     }
 
-    /**
-     * When the user clicks the new game button return to the new game activity
-     *
-     */
-    public void newGame(View view) {
-        this.finish();
-    }
-
-    /**
-     * Display the highscores for HangMan
-     */
     protected void displayHighScores() {
         ArrayList<Entry> highscores = HangMan.getHistoryInstance().getHistory();
 

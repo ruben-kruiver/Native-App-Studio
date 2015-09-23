@@ -13,30 +13,21 @@
         android:scaleType = "centerCrop"
         android:layout_gravity="center_horizontal|top" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentRight="true"
-        android:id="@+id/button_new_game"
-        android:onClick="newGame"
-        android:text="@string/menu_return_game"/>
-
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp">
+        android:layout_marginTop="15dp">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_column="2">
+            android:layout_weight="4">
 
             <TextView
                 android:layout_column="0"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:textSize="30sp"
                 android:textStyle="bold"
@@ -46,6 +37,7 @@
             <TextView
                 android:layout_column="1"
                 android:layout_width="match_parent"
+                android:layout_weight="3"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:text="@string/history_column_date">
@@ -57,19 +49,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/row_score_1"
-                android:layout_column="4">
+                android:layout_weight="4">
 
                 <TextView
                     android:layout_column="0"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:editable="true"
-                    android:id="@+id/value_score_1">
+                    android:id="@+id/value_score_1"
+                    android:layout_gravity="right">
                     </TextView>
 
                 <TextView
                     android:layout_column="1"
+                    android:layout_weight="3"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -81,19 +76,23 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/row_score_2">
+                android:id="@+id/row_score_2"
+                android:layout_weight="4">
 
                 <TextView
                     android:layout_column="0"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:editable="true"
-                    android:id="@+id/value_score_2">
+                    android:id="@+id/value_score_2"
+                    android:layout_gravity="right">
                 </TextView>
 
                 <TextView
                     android:layout_column="1"
+                    android:layout_weight="3"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -106,19 +105,23 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/row_score_3">
+                android:id="@+id/row_score_3"
+                android:layout_weight="4">
 
                 <TextView
                     android:layout_column="0"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:editable="true"
-                    android:id="@+id/value_score_3">
+                    android:id="@+id/value_score_3"
+                    android:layout_gravity="right">
                 </TextView>
 
                 <TextView
                     android:layout_column="1"
+                    android:layout_weight="3"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -131,19 +134,23 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/row_score_4">
+                android:id="@+id/row_score_4"
+                android:layout_weight="4">
 
                 <TextView
                     android:layout_column="0"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:editable="true"
-                    android:id="@+id/value_score_4">
+                    android:id="@+id/value_score_4"
+                    android:layout_gravity="right">
                 </TextView>
 
                 <TextView
                     android:layout_column="1"
+                    android:layout_weight="3"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -156,19 +163,23 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/row_score_5">
+                android:id="@+id/row_score_5"
+                android:layout_weight="4">
 
                 <TextView
                     android:layout_column="0"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:editable="true"
-                    android:id="@+id/value_score_5">
+                    android:id="@+id/value_score_5"
+                    android:layout_gravity="right">
                 </TextView>
 
                 <TextView
                     android:layout_column="1"
+                    android:layout_weight="3"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -181,19 +192,23 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/row_score_6">
+                android:id="@+id/row_score_6"
+                android:layout_weight="4">
 
                 <TextView
                     android:layout_column="0"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:editable="true"
-                    android:id="@+id/value_score_6">
+                    android:id="@+id/value_score_6"
+                    android:layout_gravity="right">
                 </TextView>
 
                 <TextView
                     android:layout_column="1"
+                    android:layout_weight="3"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -206,19 +221,23 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/row_score_7">
+                android:id="@+id/row_score_7"
+                android:layout_weight="4">
 
                 <TextView
                     android:layout_column="0"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:editable="true"
-                    android:id="@+id/value_score_7">
+                    android:id="@+id/value_score_7"
+                    android:layout_gravity="right">
                 </TextView>
 
                 <TextView
                     android:layout_column="1"
+                    android:layout_weight="3"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -231,19 +250,23 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/row_score_8">
+                android:id="@+id/row_score_8"
+                android:layout_weight="4">
 
                 <TextView
                     android:layout_column="0"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:editable="true"
-                    android:id="@+id/value_score_8">
+                    android:id="@+id/value_score_8"
+                    android:layout_gravity="right">
                 </TextView>
 
                 <TextView
                     android:layout_column="1"
+                    android:layout_weight="3"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -256,19 +279,23 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/row_score_9">
+                android:id="@+id/row_score_9"
+                android:layout_weight="4">
 
                 <TextView
                     android:layout_column="0"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:editable="true"
-                    android:id="@+id/value_score_9">
+                    android:id="@+id/value_score_9"
+                    android:layout_gravity="right">
                 </TextView>
 
                 <TextView
                     android:layout_column="1"
+                    android:layout_weight="3"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -281,19 +308,23 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/row_score_10">
+                android:id="@+id/row_score_10"
+                android:layout_weight="4">
 
                 <TextView
                     android:layout_column="0"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:editable="true"
-                    android:id="@+id/value_score_10">
+                    android:id="@+id/value_score_10"
+                    android:layout_gravity="right">
                 </TextView>
 
                 <TextView
                     android:layout_column="1"
+                    android:layout_weight="3"
                     android:layout_width="match_parent"
                     android:textSize="20sp"
                     android:textStyle="bold"

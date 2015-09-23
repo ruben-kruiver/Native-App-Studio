@@ -10,13 +10,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import nl.mprog.apps.hangman11079592.basemodel.DictionaryReader;
-import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
+import nl.mprog.apps.hangman11079592.model.Dictionary;
 
 /**
  * Load a dictionary from a XMLReader file source. The loaded XMLReader file should
- * contain a dimension of nodes. If more nodes are available per parent
- * the first node will be interpreted to contain the words. The other
- * nodes will be ignored.
+ * be have a nodes called "item" that contain a word for the dictionary list
  *
  * @author Ruben Kruiver
  * @since 2015
@@ -24,87 +22,83 @@ import nl.mprog.apps.hangman11079592.exception.DictionaryReaderException;
  */
 public class XMLReader extends DictionaryReader {
 
-    /**
-     * The name of the word node
-     */
-    protected String nodename;
+    protected String nodename = "item";
 
-    /**
-     * The parser for the XML file
-     */
     protected XmlPullParser parser;
 
+    protected static Integer longestWordLength; // We make this static because the current
+                                                // design doesn't allow for the dictionary
+                                                // to be changed easily. Thus the size of
+                                                // the list won't change
+
+    protected XMLReader(InputStream inputStream, int minimumLength, int maximumLength){
+        super(inputStream, minimumLength, maximumLength);
+    }
+
     /**
-     * Initialize the reader with a file location
+     * Create a new Dictionary containing the words with length between the minimumLength
+     * and the maximumLength
+     *
      * @param inputStream
+     * @param minimumLength
+     * @param maximumLength
+     * @return The Dictionary with the limited words list
      */
 
-    public XMLReader(InputStream inputStream) {
-        super(inputStream);
+    public static Dictionary loadDictionary(InputStream inputStream, int minimumLength, int maximumLength)
+            throws IOException, XmlPullParserException {
 
-        this.nodename = "item";
-    }
+        // Reset the total words in the list to 0 before reading the dictionary
+        XMLReader.longestWordLength = 0;
 
-    @Override
-    public void loadFile() throws DictionaryReaderException {
-        // Don't try to load the dictionary more than once
-        if (this.dictionaryIsLoaded) {
-            return;
-        }
+        XMLReader reader = new XMLReader(inputStream, minimumLength, maximumLength);
+        reader.initXMLParser();
+        reader.parseFile();
 
-        try {
-            this.initXMLParser();
-            this.parseFile();
-            this.dictionaryIsLoaded = true;
-        } catch (IOException | XmlPullParserException ex) {
-          throw new DictionaryReaderException();
-        }
-    }
-
-    @Override
-    public ArrayList<String> getContents() throws DictionaryReaderException {
-        return this.words;
-    }
-
-    @Override
-    public ArrayList<String> getWords(int mininumLength, int maximumLength) {
-        ArrayList<String> limitedList = new ArrayList();
-
-        for (String word : this.words) {
-            if (word.length() >= mininumLength
-                && word.length() <= maximumLength) {
-                limitedList.add(word);
-            }
-        }
-
-        return limitedList;
+        Dictionary dictionary = new Dictionary(reader.words);
+        return dictionary;
     }
 
     /**
-     * Initialize the XML file handler
+     * Get the size of the longest word in the dictionary. This value is stored
+     * in the reader because the dictionary doesn't have to complete list of words
+     * and therefore cannot ensure the length of the actual longest word in the file
      */
+    public static Integer getLongestWordLength() {
+        return XMLReader.longestWordLength;
+    }
+
     protected void initXMLParser() throws XmlPullParserException {
         this.parser = Xml.newPullParser();
         this.parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
         this.parser.setInput(this.inputStream, null);
     }
 
-    /**
-     * Parse the XML document and place the words in the list
-     */
     protected void parseFile() throws IOException, XmlPullParserException {
         int eventType = this.parser.getEventType();
-        String currentWord = null;
+        String currentWord;
+
+        this.words = new ArrayList();
 
         while (eventType != XmlPullParser.END_DOCUMENT){
-            if (eventType == XmlPullParser.START_TAG
-                    && parser.getName().toLowerCase().equals(this.nodename.toLowerCase())) {
-                currentWord = this.parser.nextText();
+            if (eventType != XmlPullParser.START_TAG
+                    || !this.parser.getName().equalsIgnoreCase(this.nodename)) {
+                eventType = this.parser.next();
+                continue;
+            }
 
-                // If the current word is not null, then store it in the list and clear the word
-                if (currentWord != null) {
+            currentWord = this.parser.nextText();
+
+            // Add the word to the list when it falls within the requested ranges
+            if (currentWord != null) {
+                if (currentWord.length() >= this.minimumLength
+                    && currentWord.length() <= this.maximumLength) {
                     this.words.add(currentWord);
-                    currentWord = null;
+                }
+
+                // Store the length of the longest word
+                if (currentWord.length() > XMLReader.longestWordLength) {
+                    XMLReader.longestWordLength = currentWord.length();
                 }
             }
 

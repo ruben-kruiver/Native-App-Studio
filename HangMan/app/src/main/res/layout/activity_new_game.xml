@@ -12,7 +12,7 @@
         android:scaleType = "centerCrop"
         android:layout_gravity="center_horizontal|top" />
 
-    <nl.mprog.apps.hangman11079592.view.FigureView
+    <SurfaceView
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:id="@+id/figureView"

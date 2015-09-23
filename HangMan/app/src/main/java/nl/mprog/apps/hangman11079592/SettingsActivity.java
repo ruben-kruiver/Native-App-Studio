@@ -21,48 +21,20 @@ public class SettingsActivity extends Activity {
     /**
      * The chances seekbar
      */
-    protected SeekBar sbChances;
+    protected SeekBar seekbarChances;
 
     /**
      * The word length seekbar
      */
-    protected SeekBar sbWordLength;
+    protected SeekBar seekbarWordLength;
 
     /**
      * The shared preferences for this application
      */
     protected SharedPreferences sharedPreferences;
 
-    /**
-     *
-     * @param savedInstanceState
-     */
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-
-        this.sbChances = (SeekBar) this.findViewById(R.id.seekbar_chances);
-        this.sbWordLength = (SeekBar) this.findViewById(R.id.seekbar_word_length);
-
-        Integer max_word_length = this.getIntent().getIntExtra("max_word_length", HangMan.DEFAULT_WORD_LENGTH);
-
-        TextView sbWordLengthMaxValueText = (TextView) this.findViewById(R.id.max_word_length_text);
-
-        // Set the maximum value on the progress bar equal to the longest word in the dictionary
-        this.sbWordLength.setMax(max_word_length);
-        sbWordLengthMaxValueText.setText((max_word_length.toString()));
-
-        this.sharedPreferences = this.getSharedPreferences( this.getResources().getString(R.string.preferences_name),
-                                                            Context.MODE_PRIVATE);
-
-        this.setInitialProgressValues();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_settings, menu);
         return true;
     }
@@ -95,24 +67,45 @@ public class SettingsActivity extends Activity {
         this.finish();
     }
 
-    /**
-     * Set the initial values of the seekbars
-     */
-    protected void setInitialProgressValues() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+
+        // Load the seekbars from the view
+        this.seekbarChances = (SeekBar) this.findViewById(R.id.seekbar_chances);
+        this.seekbarWordLength = (SeekBar) this.findViewById(R.id.seekbar_word_length);
+
+        Integer maxWordLength = this.getIntent().getIntExtra("maxWordLength", HangMan.DEFAULT_WORD_LENGTH);
+
+        TextView sbWordLengthMaxValueText = (TextView) this.findViewById(R.id.max_word_length_text);
+
+        // Set the maximum value on the progress bar equal to the longest word in the dictionary
+        this.seekbarWordLength.setMax(maxWordLength);
+        sbWordLengthMaxValueText.setText((maxWordLength.toString()));
+
+        this.sharedPreferences = this.getSharedPreferences( this.getResources().getString(R.string.preferences_name),
+                Context.MODE_PRIVATE);
+
+        // Set the progress indicators on the progress bars to the current values
+        this.setInitialProgressbarValues();
+    }
+
+    protected void setInitialProgressbarValues() {
         int chances = this.sharedPreferences.getInt("chances", HangMan.DEFAULT_CHANCES);
         int wordLength = this.sharedPreferences.getInt("wordLength", HangMan.DEFAULT_WORD_LENGTH);
 
-        this.sbChances.setProgress(chances);
-        this.sbWordLength.setProgress(wordLength);
+        this.seekbarChances.setProgress(chances);
+        this.seekbarWordLength.setProgress(wordLength);
     }
 
-    /**
-     * Save the current seekbar values
-     */
     protected void saveSettings() {
-        int chances = this.sbChances.getProgress();
-        int wordLength = this.sbWordLength.getProgress();
+        int chances = this.seekbarChances.getProgress();
+        int wordLength = this.seekbarWordLength.getProgress();
 
+        // We store the settings in the shared preferences
+        // so that these values can be restored when the
+        // player comes back to this came some other time
         SharedPreferences.Editor editor = this.sharedPreferences.edit();
         editor.putInt("chances", chances);
         editor.putInt("wordLength", wordLength);

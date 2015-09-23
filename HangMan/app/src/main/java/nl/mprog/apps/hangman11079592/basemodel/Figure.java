@@ -72,48 +72,38 @@ public abstract class Figure {
      * Set the total number of stages for this figure
      * @param numberOfStages
      */
-    public void setNumberOfStages(int numberOfStages) {
-        this.numberOfStages = numberOfStages;
-    }
+    public abstract void setNumberOfStages(int numberOfStages);
 
     /**
      * Get the number of stages this figure will be built in
      * @return
      */
-    public int getNumberOfStages() {
-        return this.numberOfStages;
-    }
+    public abstract int getNumberOfStages();
 
     /**
      * Get the remaining number of stages
      * @return The number of stages remaining
      */
-    public int getRemainingStages() {
-        return this.numberOfStages - this.currentStage;
-    }
+    public abstract int getRemainingStages();
 
     /**
      * Get the current stage
      * @return The number of the current stage
      */
-    public int getCurrentStage() {
-        return this.currentStage;
-    }
+    public abstract int getCurrentStage();
 
     /**
      * Check if the figure is complete
      * @return Returns TRUE if the figure is complete, FALSE otherwise
      */
-    public boolean isComplete() {
-        return this.currentStage >= this.numberOfStages;
-    }
+    public abstract boolean isComplete();
 
     /**
      * Get the float size from a dp unit
      * @param dp_unit
      * @return the float size
      */
-    public float getSize(int dp_unit) {
+    protected float getPixelSizeFromDPUnit(int dp_unit) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp_unit, this.displayMetrics);
     }
 }

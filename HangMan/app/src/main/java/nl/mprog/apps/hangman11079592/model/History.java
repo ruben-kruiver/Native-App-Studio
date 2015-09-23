@@ -18,9 +18,7 @@ import nl.mprog.apps.hangman11079592.model.history.Entry;
 
 /**
  * This class is responsible for handling the history of the game.
- * The history contains a list of dates, times and it value of sequential
- * won games times the letters used during each word. Those two values multiplied
- * form the value of the score.
+ * The history contains a list of history entries that can be requested
  *
  * @author Ruben Kruiver
  * @since 2015
@@ -28,37 +26,18 @@ import nl.mprog.apps.hangman11079592.model.history.Entry;
  */
 public class History {
 
-    /**
-     * The list of history entries
-     */
     protected ArrayList<Entry> entries;
 
-    /**
-     * The current entry in the sequence of games
-     */
     protected Entry currentEntry;
 
-    /**
-     * The context where the history was created
-     */
-    protected String filename;
+    protected String historyFilename;
 
-    /**
-     * The location of the history file
-     */
     protected XmlPullParser resourceParser;
 
-    /**
-     * The name of the entry node
-     */
-    protected String nodename = "entry";
+    protected String nodename = "entry"; // The name of the node to find the words
 
-    /**
-     * Initialize the history
-     * @param filename The context activity for this history item
-     */
-    public History(String filename) {
-        this.filename = filename;
+    public History(String historyFilename) {
+        this.historyFilename = historyFilename;
         this.entries = new ArrayList();
         this.loadHistory();
     }
@@ -77,9 +56,6 @@ public class History {
         this.entries.add(this.currentEntry);
     }
 
-    /**
-     * Add a new word to the current entry
-     */
     public void newWordWon(String word) {
         if (this.currentEntry == null) {
             this.startNewSequence();
@@ -88,21 +64,15 @@ public class History {
         this.currentEntry.addWord(word);
     }
 
-    /**
-     * Get the list of entries in order of total score
-     */
     public ArrayList<Entry> getHistory() {
         Collections.sort(this.entries);
         return this.entries;
     }
 
-    /**
-     * Save the list to a file
-     */
     public void storeHistory() {
         try {
             // Open the file
-            FileOutputStream outputStream = new FileOutputStream(new File(this.filename));
+            FileOutputStream outputStream = new FileOutputStream(new File(this.historyFilename));
 
             // Initialize the XML serializer
             XmlSerializer xmlSerializer = Xml.newSerializer();
@@ -129,15 +99,15 @@ public class History {
 
         } catch (IOException ex) {
             // For some reason the file could not be created or written
+            // we cannot actually do something about it and neither can the user
+            // Hopefully it will be saved in a next try, otherwise the history
+            // will be lost when the application closes
         }
     }
 
-    /**
-     * Load the history from the file
-     */
     protected void loadHistory() {
         try {
-            FileInputStream inputStream = new FileInputStream(new File(this.filename));
+            FileInputStream inputStream = new FileInputStream(new File(this.historyFilename));
 
             XmlPullParserFactory pullParserFactory = XmlPullParserFactory.newInstance();
             pullParserFactory.setNamespaceAware(false);
@@ -167,7 +137,8 @@ public class History {
     }
 
     /**
-     * Create a new entry from the current node
+     * This method creates a new entry from the current node in the resource parser
+     * and adds it to the entries list
      */
     protected void createEntryFromNode() {
         Integer letters = Integer.parseInt(this.resourceParser.getAttributeValue(null, "total_letters"));
@@ -179,7 +150,7 @@ public class History {
     }
 
     /**
-     * Add a new node to the DOM tree
+     * This method creates a new DOM node and places it in the XML Serializer for storage
      */
     protected void createNodeFromEntry(XmlSerializer xmlSerializer, Entry entry) throws IOException {
         xmlSerializer.startTag(null, "entry");
