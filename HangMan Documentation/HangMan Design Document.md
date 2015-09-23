@@ -9,7 +9,7 @@ The construction of the game rests on three activities and a number of model cla
 call upon these model classes to retrieve the data and handle the logic. The activities will relay
 the results and other visual feedback back to the user interface.
 
-The class diagram can be found at [GitHub](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan%20Documentation/images/Classdiagram.png)
+The class diagram can be found at [GitHub](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan%20Documentation/Classdiagram.pdf)
 
 In this design there was chosen to use a bridge class called HangMan that contains a set of attributes that can be used to communicate the same value between activities and models. For example there is a set of class constants that are used to set the result after a guessed letter. This enables the setting of the correct feedback message and what the next action should be e.g. go to the highscores or allow another character to be guessed. This same class handles the instance of the History so that it can be used by both the Highscore activity aswell as the Gameplay model.
 
