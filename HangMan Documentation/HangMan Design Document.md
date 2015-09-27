@@ -42,7 +42,7 @@ The HangMan application uses only standard Java and Android libraries. The logic
 ## Rights
 The application doesn't require any extra rights to function properly. It also doesn't need an internet connection in order for it to work.
 
-### Screenshots
+### Screen sketches
 ![New game](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan%20Documentation/images/NewGame.png "New Game screen")
 ![False guess](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan%20Documentation/images/FalseGuess.png "False guess message")
 ![Settings](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan%20Documentation/images/Settings.png "Settings screen")
