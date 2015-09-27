@@ -43,10 +43,10 @@ The HangMan application uses only standard Java and Android libraries. The logic
 The application doesn't require any extra rights to function properly. It also doesn't need an internet connection in order for it to work.
 
 ### Screenshots
-![New game](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan_Documentation/images/NewGame.png "New Game screen")
-![False guess](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan_Documentation/images/FalseGuess.png "False guess message")
-![Settings](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan_Documentation/images/Settings.png "Settings screen")
-![Highscores](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan_Documentation/images/Highscore.png "Highscore screen")
+![New game](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan%20Documentation/images/NewGame.png "New Game screen")
+![False guess](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan%20Documentation/images/FalseGuess.png "False guess message")
+![Settings](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan%20Documentation/images/Settings.png "Settings screen")
+![Highscores](https://raw.githubusercontent.com/ruben-kruiver/Native-App-Studio/master/HangMan%20Documentation/images/Highscore.png "Highscore screen")
 
 ### Todos
  - Display the Figure incrementally in the Canvas
